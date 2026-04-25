@@ -1,0 +1,95 @@
+.li1-box{
+  display: flex;
+  justify-content: space-between;
+}
+
+.li1-box-item{
+  position: relative;
+  flex: 0 0 45%;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+
+.li1-box-item>img{
+  width: 50px;
+  height: 50px;
+}
+.li2-box{
+  padding: 50px;
+}
+
+.li2-box>input,.li2-box>textarea{
+  display: block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 20px;
+  border: none;
+  background-color: #F4F5F7;
+  border-radius: 10px;
+  padding: 0 20px;
+  box-shadow: inset 0 0 4px -1px rgb(0 0 0 / 15%);
+  box-sizing: border-box;
+  /* color: var(--headerFont); */
+}
+.li2-box>textarea{
+  height: 200px;
+  resize: none;
+}
+.li2-box>button{
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--mainColor);
+  color: var(--headerFont);
+}
+
+.content-li svg path{
+  fill: var(--headerFont);
+}
+
+
+ /* 手机*/
+ @media screen and (max-width: 550px) {
+  .content-li{
+    display: block;
+  }
+  .li1-box{
+    display: block !important;
+  }
+  .li2-box{
+    padding: 10px;
+  }
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 调整间距 */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: clamp(14px, 1.8vw, 18px);
+    gap: 0.5em;                       /* 间距随字号弹性 */
+}
+
+.label {
+    /* 宽度：手机最小 100px，电脑最大 150px，中间平滑 */
+    width: clamp(100px, 20vw, 150px);
+    flex-shrink: 0;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.value {
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
