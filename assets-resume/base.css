@@ -370,7 +370,6 @@ img {
   width:35%;
   display: inline-block;
   height: 50px;
-  align-self: flex-start;
 }
 
 .co-right {
@@ -397,12 +396,10 @@ img {
 
 /* 左半部分 */
 .content .me-card {
-  position: sticky;
-  top: 100px;
+  top: 390px;
   width: 290px;
-  transform: none;
-  height: auto;
-  min-height: 0;
+  transform: translateY(-351px);
+  height: 780px;
   /* backgrounbad-color: var(--headerCOlor); */
   border-radius: 10px;
   text-align: center;
@@ -411,8 +408,8 @@ img {
 }
 
 .scroll{
-  position: sticky !important;
-  top: 100px;
+  position: fixed !important;
+  top: 49%;
 }
 
 
