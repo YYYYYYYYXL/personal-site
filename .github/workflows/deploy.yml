@@ -1,0 +1,64 @@
+name: Deploy personal site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/personal_site_deploy
+          chmod 600 ~/.ssh/personal_site_deploy
+          ssh-keyscan -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Test SSH connection
+        run: |
+          ssh -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
+            "hostname && whoami && command -v rsync"
+
+      - name: Upload files to temporary directory
+        run: |
+          ssh -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
+            "rm -rf /tmp/personal-site-deploy && mkdir -p /tmp/personal-site-deploy"
+
+          rsync -avz --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='README_LOCAL.txt' \
+            --exclude='start-local-server.bat' \
+            --exclude='start-local-server.sh' \
+            -e "ssh -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes" \
+            ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/personal-site-deploy/
+
+      - name: Publish to Nginx directory
+        run: |
+          ssh -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} '
+              set -e
+
+              BACKUP_DIR="/var/www/personal-site-backups/personal-site-$(date +%Y%m%d-%H%M%S)"
+              mkdir -p "$BACKUP_DIR"
+
+              if [ -d /var/www/personal-site ]; then
+                rsync -a /var/www/personal-site/ "$BACKUP_DIR"/
+              fi
+
+              rsync -av --delete /tmp/personal-site-deploy/ /var/www/personal-site/
+
+              find /var/www/personal-site -type d -exec chmod 755 {} \;
+              find /var/www/personal-site -type f -exec chmod 644 {} \;
+
+              echo "Deploy finished."
+            '
