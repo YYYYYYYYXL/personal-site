@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!wechatBtn) return;
     wechatBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      var wechatId = 'return3000';
+      var wechatId = ((wechatBtn.getAttribute('title') || '').split(':').slice(1).join(':')).trim();
       navigator.clipboard.writeText(wechatId).then(function() {
         alert('微信号已复制到剪贴板！');
       }, function() {
@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!qqBtn) return;
     qqBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      var qqId = '2865832528';
+      var qqId = ((qqBtn.getAttribute('title') || '').split(':').slice(1).join(':')).trim();
       navigator.clipboard.writeText(qqId).then(function() {
         alert('QQ号已复制到剪贴板！');
       }, function() {
