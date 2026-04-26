@@ -155,14 +155,14 @@
       if (nav.classList.contains('active')) {
         // 黑色主题
         const imgBlack = new Image();
-        imgBlack.src = "/img/back/black_background_progressive.jpg";
+        imgBlack.src = "https://global.wuhanqing.cn/img/back/black_background_progressive.jpg";
         imgBlack.onload = () => {
           nav.style.backgroundImage = `url('${imgBlack.src}')`;
         };
       } else {
         // 白色主题
         const imgWhite = new Image();
-        imgWhite.src = "/img/back/white_background_progressive.jpg";
+        imgWhite.src = "./assets-index/white_background_progressive.jpg";
         imgWhite.onload = () => {
           nav.style.backgroundImage = `url('${imgWhite.src}')`;
         };
@@ -382,7 +382,7 @@ window.addEventListener("load", () => {
   const blackNav = document.querySelector(".navigation.active");
   if (blackNav) {
     const imgBlack = new Image();
-    imgBlack.src = "/img/back/black_background_progressive.jpg"; // 高清图
+    imgBlack.src = "https://global.wuhanqing.cn/img/back/black_background_progressive.jpg"; // 高清图
     imgBlack.onload = () => {
       blackNav.style.backgroundImage = `url('${imgBlack.src}')`;
     };
@@ -392,7 +392,7 @@ window.addEventListener("load", () => {
   const whiteNav = document.querySelector(".navigation:not(.active)");
   if (whiteNav) {
     const imgWhite = new Image();
-    imgWhite.src = "/img/back/white_background_progressive.jpg"; // 高清图
+    imgWhite.src = "./assets-index/white_background_progressive.jpg"; // 高清图
     imgWhite.onload = () => {
       whiteNav.style.backgroundImage = `url('${imgWhite.src}')`;
     };
