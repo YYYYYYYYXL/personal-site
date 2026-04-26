@@ -236,13 +236,13 @@
             
             <div class="li1-box-item carbox">
               <div class="boxitem-line">
-                <h6>Python<span>80%</span></h6> <!-- Card.1 No.1 -->
+                <h6>Python<span>70%</span></h6> <!-- Card.1 No.1 -->
                 <div class="propress">
-                  <span class="jindu" style="width: 80%;"></span>
+                  <span class="jindu" style="width: 70%;"></span>
                 </div>
               </div>
               <div class="boxitem-line">
-                <h6>C/C++<span>20%</span></h6> <!-- Card.1 No.2 -->
+                <h6>C<span>20%</span></h6> <!-- Card.1 No.2 -->
                 <div class="propress">
                   <span class="jindu" style="width: 20%;"></span>
                 </div>
@@ -251,13 +251,13 @@
             
             <div class="li1-box-item carbox">
               <div class="boxitem-line">
-                <h6>HTML<span>40%</span></h6> <!-- Card.2 No.3 -->
+                <h6>HTML<span>20%</span></h6> <!-- Card.2 No.3 -->
                 <div class="propress">
-                  <span class="jindu" style="width: 40%;"></span>
+                  <span class="jindu" style="width: 20%;"></span>
                 </div>
               </div>
               <div class="boxitem-line">
-                <h6>CSS<span>30%</span></h6> <!-- Card.2 No.4 -->
+                <h6>Java<span>30%</span></h6> <!-- Card.2 No.4 -->
                 <div class="propress">
                   <span class="jindu" style="width: 30%;"></span>
                 </div>
@@ -267,16 +267,16 @@
             <div class="li1-box-item carbox">
               <div class="boxitem-line">
                 <!-- Card.3 No.5 -->
-                <h6>英语<span>60%</span></h6>
+                <h6>爬虫<span>60%</span></h6>
                 <div class="propress">
                   <span class="jindu" style="width: 60%;"></span>
                 </div>
               </div>
               <div class="boxitem-line">
                 <!-- Card.3 No.6 -->
-                <h6>韩语<span>80%</span></h6>
+                <h6>Django<span>40%</span></h6>
                 <div class="propress">
-                  <span class="jindu" style="width: 80%;"></span>
+                  <span class="jindu" style="width: 40%;"></span>
                 </div>
               </div>
             </div>
@@ -284,14 +284,14 @@
             <div class="li1-box-item carbox">
               <div class="boxitem-line">
                 <!-- Card.4 No.7 -->
-                <h6>日语<span>20%</span></h6>
+                <h6>Hadoop<span>20%</span></h6>
                 <div class="propress">
                   <span class="jindu" style="width: 20%;"></span>
                 </div>
               </div>
               <div class="boxitem-line">
                 <!-- Card.4 No.8 -->
-                <h6>德语<span>10%</span></h6>
+                <h6>VScode<span>10%</span></h6>
                 <div class="propress">
                   <span class="jindu" style="width: 10%;"></span>
                 </div>
@@ -528,12 +528,10 @@
 <script type="text/javascript" src="./assets-resume/canvas.js"></script>
 <script>
   $(document).ready(function () {
-    let spanList = $('.li1-box-item .boxitem-line .jindu');
-    let jinduList = ['80%', '20%', '40%', '30%', '60%', '80%', '20%', '10%']
-
-    for (let i = 0; i <= spanList.length; i++) {
-      $(spanList[i]).css('width', jinduList[i])
-    }
+    $('.li1-box-item .boxitem-line').each(function () {
+      const percent = $(this).find('h6 span').text().trim();
+      $(this).find('.jindu').css('width', percent);
+    });
   })
 </script>
 
