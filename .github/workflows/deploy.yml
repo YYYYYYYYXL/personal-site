@@ -17,7 +17,7 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/personal_site_deploy
+          printf '%s\n' "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/personal_site_deploy
           chmod 600 ~/.ssh/personal_site_deploy
           ssh-keyscan -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
 
