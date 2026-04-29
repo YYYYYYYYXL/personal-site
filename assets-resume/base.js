@@ -1,6 +1,6 @@
 (function () {
-  const BLACK_BG = "https://global.wuhanqing.cn/img/back/black_background_progressive.jpg";
-  const WHITE_BG = "./assets-index/white_background_progressive.jpg";
+const BLACK_BG = "/img/back/black_background_progressive.jpg";
+const WHITE_BG = "/img/back/white_background_progressive.jpg";
 
   function syncHeroBackground() {
     const nav = document.querySelector('.navigation');

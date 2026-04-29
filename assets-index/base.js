@@ -1,6 +1,6 @@
 (function () {
-  const BLACK_BG = "https://global.wuhanqing.cn/img/back/black_background_progressive.jpg";
-  const WHITE_BG = "./assets-index/white_background_progressive.jpg";
+const BLACK_BG = "/img/back/black_background_progressive.jpg";
+const WHITE_BG = "/img/back/white_background_progressive.jpg";
 
   function syncHomeHeroBackground() {
     const nav = document.querySelector('.navigation');
@@ -149,7 +149,7 @@
       };
     } else {
       const imgWhite = new Image();
-      imgWhite.src = "./assets-index/white_background_progressive.jpg";
+imgWhite.src = "/img/back/white_background_progressive.jpg";
       imgWhite.onload = () => {
         nav.style.backgroundImage = `url('${imgWhite.src}')`;
       };
@@ -211,7 +211,7 @@
       } else {
         // 白色主题
         const imgWhite = new Image();
-        imgWhite.src = "./assets-index/white_background_progressive.jpg";
+imgWhite.src = "/img/back/white_background_progressive.jpg";
         imgWhite.onload = () => {
           nav.style.backgroundImage = `url('${imgWhite.src}')`;
         };
@@ -442,7 +442,7 @@ window.addEventListener("load", () => {
   const whiteNav = document.querySelector(".navigation:not(.active)");
   if (whiteNav) {
     const imgWhite = new Image();
-    imgWhite.src = "./assets-index/white_background_progressive.jpg";
+imgWhite.src = "/img/back/white_background_progressive.jpg";
     imgWhite.onload = () => {
       whiteNav.style.backgroundImage = `url('${imgWhite.src}')`;
     };
