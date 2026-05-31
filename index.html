@@ -13,15 +13,6 @@
 </head>
 
 <body>
-  <!-- 音乐播放器 -->
-  <!--
-  <div class="music-wrap" id="musicwrap">
-    <audio id="play1" controls>
-      <source src="./img/music.mp3">
-    </audio>
-  </div>
-  -->
-
 
   <canvas class="canvas-wrap" id="triangle-lost-in-space" resize="true" style="user-select: none; touch-action: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 1699px; height: 835px;" width="2548" height="1252"></canvas>
 
@@ -67,21 +58,9 @@
               <li><a href="contact.html"><span>联系</span></a></li>
               <li><a href="blog.html"><span>博客</span></a></li>
               <li><a href="life.html"><span>生活</span></a></li>
-              <li><a href="download.html"><span>资源</span></a></li>
-              <!-- 语言选择器 -->
-              <li class="language-selector">
-                <div style="display:inline-flex;align-items:center;gap:6px;">
-                  <img id="lang-flag" src="./assets-index/cn.svg" alt="flag" style="width:24px;height:auto;object-fit:contain;display:inline-block;">
-                  <select id="language-select" aria-label="Language select">
-                    <option value="cn">中文</option>
-                    <option value="en">English</option>
-                    <option value="kr">한국어</option>
-                    <option value="jp">日本語</option>
-                    <option value="de">Deutsch</option>
-                  </select>
-                </div>
-              </li>
+              <li><a href="download.html"><span>资源</span></a></li>    
             </ul>
+
             <!-- 开关灯 -->
             <div class="toggle-theme" id="toggleTheme">
               <svg t="1649159647627" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg " p-id="2250" width="15" height="15">
@@ -195,25 +174,26 @@
           <div class="borderbotm"></div>
           <!-- 个人信息 -->
           <div class="mecar-bottm">
-            <!-- 1. 大学 / University / 대학교 / 大学 / Universität -->
+            <!-- 1. 大学  -->
             <div>
               <span class="mecarbottm-key">就读学校</span>
               <span class="mecarbottm-value">内蒙古师范大学</span>
             </div>
 
-            <!-- 2. 学院 / College / 단과대학 / 学部 / Fakultät -->
+            <!-- 2. 学院  
             <div>
               <span class="mecarbottm-key">就读学院</span>
               <span class="mecarbottm-value">计算机科学技术</span>
             </div>
+            -->
 
-            <!-- 3. 系 / Department / 학과 / 学科 / Lehrstuhl -->
+            <!-- 3.专业  -->
             <div>
               <span class="mecarbottm-key">就读专业</span>
               <span class="mecarbottm-value">数据科学与大数据技术</span>
             </div>
 
-            <!-- 4. 年级 / Class of / 학번 / 学年 / Jahrgang -->
+            <!-- 4. 年级  -->
             <div>
               <span class="mecarbottm-key">所在年级</span>
               <span class="mecarbottm-value">大三</span>
@@ -228,31 +208,7 @@
       </div>
 
       <!-- 右侧主要内容部分 -->
-      <div class="co-right" id="next-one">
-        <!-- 完成项目 -->
-        <div class="content-li li1">
-          <!-- 项目个数 -->
-          <div class="li1-box borderbefore">
-            <span class="tag">-</span><span>3</span><span class="tag">-</span>
-            <div class="borderbotm"></div>
-            <h2>项目个数</h2>
-          </div>
-
-          <!-- 证书个数 -->
-          <div class="li1-box borderbefore">
-            <span class="tag">-</span><span>2</span><span class="tag">-</span>
-            <div class="borderbotm"></div>
-            <h2>证书个数</h2>
-          </div>
-
-          <!-- 获奖个数 -->
-          <div class="li1-box borderbefore">
-            <span class="tag">-</span><span>0</span><span class="tag">-</span>
-            <div class="borderbotm"></div>
-            <h2>获奖个数</h2>
-          </div>
-        </div>
-
+      <div class="co-right" id="next-one">      
         <!-- 每日一句 -->
         <div class="content-li li2">
           <h3>
@@ -268,19 +224,6 @@
           <script src="./assets-index/daily-quote-zh.js"></script>
         </div>
         
-        <!-- 视频简历 自我介绍 -->
-        <div class="content-li li3">
-          <h3>
-            <span>视频简历</span>
-            <div class="borderbotm"></div>
-            <span>02</span>
-          </h3>
-          <div class="carbox li3-box" id="video-resume-box">
-            <iframe src="https://player.bilibili.com/player.html?bvid=BV1yCFszFE1N&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="100%">
-            </iframe>
-          </div>
-        </div>
-
         <!-- 我的能力 -->
         <div class="content-li li4">
           <h3>
@@ -298,10 +241,10 @@
               </svg>
 
               <h2>后端开发</h2>
-              <p>Python、C、Java<br>IDEA、Visual Studio Code<br>Anaconda、Jupyter</p>
+              <p>Python、C、Java、MySQL、Node.js<br>接口开发、业务逻辑、数据库设计、Git<br></p>
             </div>
 
-            <!-- 技能块2 -->
+          <!-- 技能块2 
             <div class="carbox">
               <svg t="1756911542595" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7268" width="40" height="40">
                 <path d="M304 304h416v416h-416z" fill="#E0EBFE" p-id="7269"></path>
@@ -309,19 +252,22 @@
                 <path d="M1008 288a16 16 0 1 0 0-32H864V192a32 32 0 0 0-32-32h-64V16a16 16 0 1 0-32 0V160h-128V16a16 16 0 1 0-32 0V160h-128V16a16 16 0 1 0-32 0V160H288V16a16 16 0 1 0-32 0V160H192a32 32 0 0 0-32 32v64H16a16 16 0 1 0 0 32H160v128H16a16 16 0 1 0 0 32H160v128H16a16 16 0 1 0 0 32H160v128H16a16 16 0 1 0 0 32H160v64a32 32 0 0 0 32 32h64v144a16 16 0 1 0 32 0V864h128v144a16 16 0 1 0 32 0V864h128v144a16 16 0 1 0 32 0V864h128v144a16 16 0 1 0 32 0V864h64a32 32 0 0 0 32-32v-64h144a16 16 0 1 0 0-32H864v-128h144a16 16 0 1 0 0-32H864v-128h144a16 16 0 1 0 0-32H864V288h144zM800 800H224V224h576v576z" fill="#5465CF" p-id="7271"></path>
               </svg>
 
-              <h2>操作系统</h2>
-              <p>Ubuntu、CentOS7、Kali<br>Windows11、Windows10、Windows7</p>
+              <h2>标题</h2>
+              <p>第一行内容<br>第二行内容</p>
             </div>
+          
 
-            <!-- 技能块3 -->
+               技能块3 
             <div class="carbox">
               <svg t="1756911656385" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8341" width="40" height="40">
                 <path d="M757.205333 473.173333c5.333333 0 10.453333 2.090667 14.250667 5.717334a19.029333 19.029333 0 0 1 5.888 13.738666v58.154667h141.184c11.093333 0 20.138667 8.704 20.138667 19.413333v232.704a19.797333 19.797333 0 0 1-20.138667 19.413334h-141.184v96.981333a19.754667 19.754667 0 0 1-20.138667 19.370667H716.8a20.565333 20.565333 0 0 1-14.250667-5.674667 19.029333 19.029333 0 0 1-5.888-13.696v-96.981333h-141.141333a20.565333 20.565333 0 0 1-14.250667-5.674667 19.029333 19.029333 0 0 1-5.930666-13.738667v-232.704c0-5.12 2.133333-10.112 5.930666-13.738666a20.565333 20.565333 0 0 1 14.250667-5.674667h141.141333v-58.154667c0-5.162667 2.133333-10.112 5.888-13.738666a20.565333 20.565333 0 0 1 14.250667-5.674667h40.362667zM192.597333 628.394667c22.272 0 40.32 17.365333 40.32 38.826666v38.741334c0 40.618667 32.512 74.368 74.624 77.397333l6.058667 0.213333h80.64c21.930667 0.469333 39.424 17.706667 39.424 38.784 0 21.077333-17.493333 38.314667-39.424 38.784H313.6c-89.088 0-161.28-69.461333-161.28-155.178666v-38.741334c0-21.461333 18.005333-38.826667 40.277333-38.826666z m504.106667 0h-80.64v116.394666h80.64v-116.394666z m161.28 0h-80.64v116.394666h80.64v-116.394666zM320.170667 85.333333c8.234667 0 15.658667 4.778667 18.773333 12.202667H338.773333l161.322667 387.84c2.517333 5.973333 1.706667 12.8-2.005333 18.090667a20.394667 20.394667 0 0 1-16.725334 8.533333h-43.52a20.181333 20.181333 0 0 1-18.688-12.202667L375.850667 395.648H210.901333l-43.264 104.149333A20.181333 20.181333 0 0 1 148.906667 512H105.514667a20.394667 20.394667 0 0 1-16.725334-8.533333 18.773333 18.773333 0 0 1-2.005333-18.090667l161.28-387.84A20.181333 20.181333 0 0 1 266.88 85.333333h53.290667zM716.8 162.901333c42.794667 0 83.84 16.341333 114.090667 45.44a152.234667 152.234667 0 0 1 47.232 109.738667v38.741333c-0.469333 21.077333-18.389333 37.930667-40.32 37.930667s-39.808-16.853333-40.32-37.930667v-38.741333c0-20.608-8.490667-40.32-23.637334-54.869333a82.304 82.304 0 0 0-57.045333-22.741334h-80.64c-21.888-0.469333-39.424-17.706667-39.424-38.784 0-21.077333 17.493333-38.314667 39.424-38.784h80.64z m-423.424 34.304L243.2 318.037333h100.48L293.418667 197.205333z" fill="#000000" p-id="8342"></path>
               </svg>
 
-              <h2>机器学习</h2>
-              <p> TensorFlow、PyTorch  <br>Scikit-learn、Keras </p>
+              <h2>标题</h2>
+              <p> 第一行内容 <br>第二行内容 </p>
             </div>
+          -->
+
 
             <!-- 技能块4 -->
             <div class="carbox">
@@ -329,14 +275,14 @@
                 <path d="M981.917808 277.742466H813.589041V122.038356c0-19.638356-15.430137-35.068493-35.068493-35.068493H252.493151c-19.638356 0-35.068493 15.430137-35.068493 35.068493v155.70411H42.082192c-19.638356 0-35.068493 15.430137-35.068493 35.068493V911.780822c0 19.638356 15.430137 35.068493 35.068493 35.068493h939.835616c19.638356 0 35.068493-15.430137 35.068493-35.068493V312.810959c0-19.638356-15.430137-35.068493-35.068493-35.068493z m-694.356164-120.635617H743.452055v120.635617H287.561644v-120.635617zM252.493151 347.879452h694.356164v133.260274h-74.345205v-50.49863c0-19.638356-15.430137-35.068493-35.068494-35.068493h-117.830137c-19.638356 0-35.068493 15.430137-35.068493 35.068493v50.49863h-336.657534v-50.49863c0-19.638356-15.430137-35.068493-35.068493-35.068493h-117.830137c-19.638356 0-35.068493 15.430137-35.068493 35.068493v50.49863H77.150685v-133.260274H252.493151z m549.873972 119.232877v140.273972h-47.69315v-140.273972h47.69315z m-526.027397 0v140.273972h-47.693151v-140.273972h47.693151zM77.150685 876.712329V551.276712h81.358904v89.775343c0 19.638356 15.430137 35.068493 35.068493 35.068493h117.830137c19.638356 0 35.068493-15.430137 35.068493-35.068493v-89.775343h336.657535v89.775343c0 19.638356 15.430137 35.068493 35.068493 35.068493h117.830137c19.638356 0 35.068493-15.430137 35.068493-35.068493v-89.775343h74.345205v324.032877H77.150685z" fill="#464646" p-id="11480"></path>
               </svg>
 
-              <h2>其他技能</h2>
-              <p>视频剪辑、前端设计、项目管理等</p>
+              <h2>环境与服务部署</h2>
+              <p>Linux、Docker、Zookeeper、Hadoop<br>环境配置、服务启动、日志排查、集群组件</p>
             </div>
           </div>
         </div>
 
         <!-- 我的期望薪资 (新加) -->
-        <!--
+        
         <div class="content-li li7">
           <h3>
             <span>期望薪资</span>
@@ -378,69 +324,8 @@
             </div>
           </div>
         </div>
-        -->
+        
 
-        <!-- 我的专业教师 -->
-        <!--
-        <div class="content-li li5">
-          <h3>
-            <span>我的专业教师</span>
-            <div class="borderbotm"></div>
-            <span>05</span>
-          </h3>
-          <div class="li5-box">
-            <div class="left buttonsty" id="leftimg">
-              <span>
-                <svg t="1649148549783" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                  xmlns="http://www.w3.org/2000/svg" p-id="22757" width="25" height="25">
-                  <path
-                    d="M325.399273 235.124364L600.157091 488.727273 325.399273 742.353455a34.909091 34.909091 0 1 0 47.36 51.316363l302.545454-279.272727a34.909091 34.909091 0 0 0 0-51.316364l-302.545454-279.272727a34.909091 34.909091 0 1 0-47.36 51.316364"
-                    fill="#ffffff" p-id="22758" data-spm-anchor-id="a313x.7781069.0.i41" class="selected"></path>
-                </svg>
-              </span>
-            </div>
-            <div class="right buttonsty" id="rightimg">
-              <span>
-                <svg t="1649148517782" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                  xmlns="http://www.w3.org/2000/svg" p-id="21306" width="25" height="25">
-                  <path
-                    d="M675.328 765.626182L400.570182 512l274.757818-253.626182a34.909091 34.909091 0 1 0-47.36-51.316363l-302.545455 279.272727a34.909091 34.909091 0 0 0 0 51.316363l302.545455 279.272728a34.909091 34.909091 0 1 0 47.36-51.316364"
-                    fill="#ffffff" p-id="21307" data-spm-anchor-id="a313x.7781069.0.i34" class="selected"></path>
-                </svg>
-
-
-              </span></div>
-
-            <div class="li5box-ul" id="li5boxul">
-              <div class="li5box-car carbox">
-                <img src="./img/toux.jpg" alt="">
-                <h3>张老师</h3>
-                <span>Android</span>
-                <p>
-                  我业精于勤而荒于嬉，行成于思而毁于随。
-                </p>
-              </div>
-              <div class="li5box-car carbox">
-                <img src="./img/toux.jpg" alt="">
-                <h3>史老师</h3>
-                <span>web前端开发</span>
-                <p>
-                  青，取之于蓝而青于蓝;
-                  冰，水为之而寒于水。
-                </p>
-              </div>
-              <div class="li5box-car carbox">
-                <img src="./img/toux.jpg" alt="">
-                <h3>杜老师</h3>
-                <span>javaweb</span>
-                <p>
-                  有志者事竟成。
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        -->
 
         <!-- 近日成果 -->
         <div class="content-li li6">
