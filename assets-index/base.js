@@ -538,7 +538,7 @@ function initSearch() {
   });
 }
 
-// 更完善且独立的 blog 搜索逻辑
+// 更完善的列表搜索逻辑
 function normalizeTextForSearch(str) {
   if (!str) return '';
   // 转小写
@@ -550,7 +550,7 @@ function normalizeTextForSearch(str) {
   return s;
 }
 
-function applyBlogFilters() {
+function applyListFilters() {
   const raw = (document.getElementById('search-input') && document.getElementById('search-input').value) || '';
   const keyword = normalizeTextForSearch(raw);
 
@@ -590,24 +590,24 @@ function applyBlogFilters() {
   });
 }
 
-function initBlogSearch() {
+function initListSearch() {
   const searchButton = document.getElementById('search-button');
   const searchInput = document.getElementById('search-input');
   if (!searchButton || !searchInput) return;
 
-  // 点击与输入均触发 blog 专用过滤
+  // 点击与输入均触发 列表过滤
   searchButton.addEventListener('click', function() {
-    applyBlogFilters();
+    applyListFilters();
   });
   searchInput.addEventListener('input', function() {
-    applyBlogFilters();
+    applyListFilters();
   });
 
   // 也在话题切换时调用，保持同步
   document.querySelectorAll('.topic-filter li').forEach(item => {
     item.addEventListener('click', function() {
       // slight delay to allow active class to update
-      setTimeout(applyBlogFilters, 10);
+      setTimeout(applyListFilters, 10);
     });
   });
 }
@@ -645,10 +645,10 @@ function applyFilters() {
 document.addEventListener('DOMContentLoaded', function() {
   try {
     initTopicFilter();
-    // 如果页面是 blog（存在 .content-li.li3 或 topic-filter），使用更完善的 blog 搜索逻辑
-    const isBlogLike = !!document.querySelector('.content-li.li3') || !!document.querySelector('.topic-filter');
-    if (isBlogLike) {
-      initBlogSearch();
+    // 如果页面存在可筛选列表，使用列表搜索逻辑
+    const hasFilterableList = !!document.querySelector('.content-li.li3') || !!document.querySelector('.topic-filter');
+    if (hasFilterableList) {
+      initListSearch();
     } else {
       initSearch();
     }
