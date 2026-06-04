@@ -2,8 +2,6 @@
    See the authoritative "强制：移动端 & 平板（每行一个元素... )" block at the file end.
    (This top duplicate was removed to avoid conflicting/duplicated mobile overrides.) */
 
-/* 桌面：增大语言选择器与主题开关之间的间距（不影响移动端） */
-@media screen and (min-width: 1251px) {/* Lines 1131-1140 omitted */}
 :root {
  /* 默认背景色 */
 --backColor:#fff;
@@ -172,43 +170,7 @@ img {
 }
 
 /* 开灯 */
-.kaig-bottm img {
-  width: 15px;
-  height: 15px;
-}
-
-.kaig-bottm .my-radio{
-  position: relative;
-  display: inline-block;
-  height: 20px;
-  width: 40px;
-  vertical-align: middle;
-  background: #F4F5F7;
-  border-radius: 2em;
-  box-shadow: inset 0 0 4px -1px rgb(0 0 0 / 15%);
-  transition: .4s ease-in-out;
-  cursor: pointer;
-}
-
-.kaig-bottm .my-radio.active>i{
-  right: 0px;
-  left: auto;
-}
-.kaig-bottm .my-radio>i{
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
-  display: inline-block;
-  width: 35%;
-  border: solid 3px #AFB42B;
-  border-radius: 50%;
-  background: #FCFCFE;
-  transition: all .2s ease;
-}
-
-/* 恢复滑动开关样式：有些页面将开关放在没有 .kaig-bottm 包裹的地方，
-   所以同时提供不依赖父容器的通用样式，保证 #myRadio/.my-radio 显示为滑动开关 */
+/* 滑动开关通用样式 */
 .my-radio, #myRadio {
   position: relative;
   display: inline-block;
@@ -241,16 +203,6 @@ img {
 }
 
 /* 顶部导航栏 */
-.header-nav {
-  display: inline-block;
-}
-
-/* Ensure the toggle-theme container sits inline with nav items on desktop */
-.toggle-theme {
-  display: inline-block;
-  vertical-align: middle;
-}
-
 .header-nav>li.active::after {
   content: '';
   display: inline-block;
@@ -264,12 +216,8 @@ img {
   transition: .4s ease-in-out;
 }
 
-/* 顶部导航栏 菜单间距调节 */
+/* 顶部导航项基础状态；布局由 assets-common/nav.css 控制 */
 .header-nav>li {
-  padding: 0 15px !important;
-  min-width: 90px;
-  max-width: 120px;
-  text-align: center;
   position: relative;
   transition: color .6s ease-in-out;
   box-sizing: border-box;
@@ -666,7 +614,6 @@ background-image: url("../img/back/white_background_progressive.jpg"); /* 小图
 }
 
 
-
 /* 适配 */
 
 /* @media screen and (min-width:1000px) and (max-width:1200px) {
@@ -674,7 +621,6 @@ background-image: url("../img/back/white_background_progressive.jpg"); /* 小图
     min-width: auto;
   }
 }
-
 
 
 @media screen and ( max-width:1000px) {
@@ -749,7 +695,6 @@ background-image: url("../img/back/white_background_progressive.jpg"); /* 小图
   border-bottom: 10px solid transparent;
   border-left: 20px solid #fff;
 } */
-
 
 
  .min_menu{
@@ -878,16 +823,6 @@ background-image: url("../img/back/white_background_progressive.jpg"); /* 小图
     margin: 0; /* 移除默认外边距 */
     text-align: center; /* 内容水平居中 */
   }
-  
-  /* 调整语言选择器在手机端的样式 */
-  .header-right .header-nav>li.language-selector {
-    display: block; /* 独占一行 */
-    width: 100%;
-    padding: 8px 10px !important; /* 语言选择器稍微多一点间距 */
-    margin-top: 5px; /* 与上方菜单项保持适当距离 */
-    text-align: center; /* 水平居中 */
-  }
-  
   /* 调整菜单列表容器 */
   .menu_list {
       pointer-events: none;
@@ -915,32 +850,6 @@ background-image: url("../img/back/white_background_progressive.jpg"); /* 小图
       pointer-events: all;
       transform: translateY(0px);
   }
-  
-  /* 调整开关灯样式 */
-  .header-right .kaig-bottm {
-    display: block;
-    padding: 8px 10px; /* 调整内边距 */
-    margin: 5px 0; /* 调整外边距 */
-    text-align: center; /* 使其中的开关水平居中 */
-  }
-  
-  /* 调整语言选择器下拉菜单（手机端保持自适应宽度，不拉伸） */
-  #language-select {
-    width: auto !important;
-    min-width: 88px;
-    margin: 0 auto; /* 父容器居中时更协调 */
-    padding: 6px 25px 6px 8px !important;
-  }
-
-  /* 手机端将主题切换开关放到语言选择器下方并居中显示 */
-  /* 手机端：将太阳-开关-月亮 保持为一行（inline-block），并整体居中显示 */
-  .menu_list > svg {
-    display: inline-block;
-    width: auto;
-    vertical-align: middle;
-    margin: 0 6px; /* 与开关保持小间距 */
-  }
-
   /* 菜单项与链接在移动端强制居中（作用域仅限 .menu_list 内） */
   .menu_list .header-nav {
     text-align: center !important;
@@ -967,23 +876,6 @@ background-image: url("../img/back/white_background_progressive.jpg"); /* 小图
     display: inline-block !important;
     text-align: center !important;
   }
-
-  /* 语言选择器内部容器保持 inline-flex 并水平居中 */
-  .menu_list .header-nav>li.language-selector > div {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto !important;
-  }
-
-  /* 手机端：把 svg 占一行，开关保持原有尺寸但居中显示（不拉伸） */
-  .menu_list > .my-radio,
-  .menu_list > #myRadio {
-    /* 保持开关原有宽高（由全局 .my-radio 定义），使用 inline-block 并用 auto margin 置中 */
-    display: inline-block !important;
-    margin: 6px auto !important; /* 置中并保持原始宽度 */
-  }
-
   /* 确保通用开关样式仍为 inline-block（不要被覆盖为 100% 宽度） */
   #myRadio, .my-radio {
     display: inline-block;
@@ -1061,58 +953,6 @@ background-image: url("../img/back/white_background_progressive.jpg"); /* 小图
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
-
-
-
-/* 语言选择器样式 */
-.language-selector {
-  margin-left: 8px !important;
-  position: relative;
-  display: inline-block;
-}
-
-.header-nav > li.language-selector {
-  display: none !important;
-}
-
-#language-select {
-  background-color: transparent;
-  border: 1px solid var(--headerFont);
-  color: var(--headerFont);
-  padding: 5px 25px 5px 8px !important; /* 右侧增加内边距给箭头留空间 */
-  width: 80px !important;
-  font-size: 12px !important;
-  /* 移除浏览器默认箭头 */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-/* 针对IE的兼容性处理 */
-#language-select::-ms-expand {
-  display: none; /* 隐藏IE的默认箭头 */
-}
-
-#language-select option {
-  background-color: var(--headerCOlor);
-  color: var(--headerFont);
-}
-
-/* 语言选择器箭头 - 使用自定义箭头 */
-.language-selector::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid var(--headerFont);
-  pointer-events: none;
-}
-
 /* 处理长文本换行问题 防止撑破父容器 */
 p, a, span {
   overflow-wrap: break-word;
@@ -1142,104 +982,6 @@ p, a, span {
   margin-right: 4px; /* 图标和文字间距 */
   vertical-align: middle;
 }
-
-/* 桌面：增大语言选择器与主题开关之间的间距（不影响移动端） */
-@media screen and (min-width: 1251px) {
-  .header-right {
-    display: flex;
-    align-items: center;
-    height: 70px;
-  }
-
-  .menu_list {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    height: 70px;
-  }
-
-  .header-nav {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    height: 70px;
-  }
-
-  .header-nav > li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: auto;
-    max-width: none;
-    height: 70px;
-    padding: 0 18px !important;
-    line-height: 1;
-  }
-
-  .header-nav > li > a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 70px;
-    white-space: nowrap;
-  }
-
-  .header-nav > li > a > span {
-    display: block;
-    white-space: nowrap;
-  }
-
-  .language-selector {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .header-nav > li.language-selector {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-
-  .header-nav > li.language-selector > div {
-    display: flex !important;
-    align-items: center;
-    gap: 10px !important;
-    height: 70px;
-    transform: none !important;
-  }
-
-  .header-nav > li.language-selector img#lang-flag,
-  .header-nav > li.language-selector img {
-    width: 36px;
-    height: 24px;
-    object-fit: cover;
-    flex: 0 0 auto;
-    transform: none !important;
-  }
-
-  #language-select {
-    width: 120px !important;
-    height: 38px;
-    padding: 0 34px 0 12px !important;
-    line-height: 38px;
-  }
-
-  .toggle-theme {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    height: 70px;
-    margin-left: 6px;
-  }
-
-  #myRadio, .my-radio, .kaig-bottm {
-    margin-left: 0 !important;
-  }
-
-  .toggle-theme > * {
-    transform: none !important;
-  }
-}
-
 
 /* 强制：移动端 & 平板（每行一个元素，且水平居中；不更改垂直间距） */
 @media screen and (max-width: 1250px), screen and (max-width: 1200px) {
@@ -1279,75 +1021,6 @@ p, a, span {
     margin: 0 auto !important;
     vertical-align: middle !important;
   }
-
-  /* 语言选择器 li：单独一行（上面 li 规则已包含），内部容器居中并保持尺寸 */
-  .menu_list .header-nav > li.language-selector {
-    display: block !important;          /* 独占一行 */
-    width: 100% !important;
-    text-align: center !important;      /* 内部 div 居中 */
-    margin: 0 auto !important;
-    /* 不改 padding-top/bottom */
-  }
-
-  /* 语言选择器内部 div 保持 inline-flex 并居中 */
-  .menu_list .header-nav > li.language-selector > div {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0 auto !important;
-  }
-
-  /* 下拉保持原有 padding/尺寸，仅强制水平居中 */
-  #language-select {
-    display: inline-block !important;
-    margin: 0 auto !important;
-    vertical-align: middle !important;
-    text-align: center !important;
-    /* 不覆盖 width / padding-top / padding-bottom 等 */
-  }
-
-  /* 重要：菜单中紧跟 ul 后面的 svg 图标 和 开关 span（#myRadio/.my-radio）各自占一行并居中 */
-  /* 这些选择器覆盖直接作为 .menu_list 子项的 svg 和 span */
-  .menu_list > svg,
-  .menu_list > .my-radio,
-  .menu_list > #myRadio,
-  .menu_list > svg.icon,
-  .menu_list > .icon,
-  .menu_list > span.my-radio,
-  .menu_list > span#myRadio {
-    display: block !important;        /* 每个元素独占一行 */
-    margin-left: auto !important;
-    margin-right: auto !important;    /* 水平居中 */
-    text-align: center !important;
-    /* 不更改任何上下间距/高度/尺寸 */
-  }
-
-  /* 兼容性：如果 svg 或开关被包在其它容器里，也确保其容器为 block 且居中 */
-  /* Apply block/100% width to direct children EXCEPT the theme switch elements
-     (.my-radio and #myRadio) which should keep their desktop width and only be centered. */
-  .menu_list > *:not(.my-radio):not(#myRadio) {
-    /* 不把此规则当作强制改动，只在必要时生效以确保每个直接子项独占一行 */
-    display: block !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
-    margin: 0 auto !important;
-  }
-  /* 但为了不改变垂直间距，避免覆盖 padding-top/bottom */
-  .menu_list > *:not(.my-radio):not(#myRadio) { padding-top: inherit !important; padding-bottom: inherit !important; }
-
-  /* Theme switch: keep desktop width (40px), do not let catch-all make it full-width.
-     Center it horizontally on mobile. Use !important to override previous broad rules. */
-  .menu_list > .my-radio,
-  .menu_list > #myRadio {
-    display: inline-block !important; /* keep intrinsic width */
-    width: 40px !important; /* same as desktop */
-    max-width: 40px !important;
-    box-sizing: content-box !important;
-    margin: 6px auto !important; /* center horizontally, keep small vertical gap */
-    vertical-align: middle !important;
-  }
-
   /* If the theme controls are wrapped in a container (e.g. <div class="toggle-theme">),
      keep that container centered on mobile/tablet but prevent its children from wrapping. */
   .menu_list > .toggle-theme {
@@ -1377,69 +1050,12 @@ p, a, span {
   @media screen and (max-width: 768px) {
     .menu_list,
     .menu_list > .header-nav,
-    .menu_list .header-nav > li,
-    .menu_list .header-nav > li.language-selector,
-    .menu_list > svg,
-    .menu_list > .my-radio,
-    .menu_list > #myRadio {
+    .menu_list .header-nav > li {
       /* 复用上面的规则：只要在移动/平板断点都强制性应用一行一个且居中 */
       display: block !important;
       width: 100% !important;
       text-align: center !important;
       margin: 0 auto !important;
-    }
-  }
-}
-
-/* PATCH: ensure sun - switch - moon render inline on mobile/tablet */
-/* Added at end to override earlier broad "each child on its own line" rules */
-@media screen and (max-width: 1250px), screen and (max-width: 1200px) {
-  /* Keep menu_list as vertical stack, but make the theme icons + switch form a single centered horizontal group. */
-
-  /* Make direct svg children behave inline so they can sit on the same row as the switch.
-     We explicitly override the earlier rules that force direct children to block/100% width. */
-  .menu_list > svg {
-    display: inline-block !important;
-    width: auto !important;
-    max-width: none !important;
-    margin: 0 8px !important; /* small horizontal gap between icon and switch */
-    vertical-align: middle !important;
-    text-align: center !important;
-  }
-
-  /* Ensure the theme switch keeps its desktop intrinsic width and sits centered between icons. */
-  .menu_list > .my-radio,
-  .menu_list > #myRadio {
-    display: inline-block !important;
-    width: 40px !important;
-    max-width: 40px !important;
-    margin: 0 6px !important; /* small horizontal gap */
-    vertical-align: middle !important;
-  }
-
-  /* Parent has text-align:center already, but ensure it here so inline elements center as a group. */
-  .menu_list {
-    text-align: center !important;
-  }
-
-  /* For cases where SVGs are assigned a generic .icon class, ensure they are inline too */
-  .menu_list > svg.icon {
-    display: inline-block !important;
-  }
-
-  /* Defensive: restore inline behavior at narrower breakpoint as well */
-  @media screen and (max-width: 768px) {
-    .menu_list > svg,
-    .menu_list > svg.icon,
-    .menu_list > .my-radio,
-    .menu_list > #myRadio {
-      display: inline-block !important;
-      margin: 0 6px !important;
-      vertical-align: middle !important;
-      width: auto !important;
-    }
-    .menu_list {
-      text-align: center !important;
     }
   }
 }
@@ -1510,8 +1126,4 @@ html, body {
 /* 针对特定页面锚点偏移问题的修复（根据需要调整选择器和偏移值） */
 #KHU-ENVELOP-DESIGN {
   scroll-margin-top: 80px; /* 等于或略大于你 header 的高度 */
-}
-.header-nav > li.language-selector,
-.menu_list .header-nav > li.language-selector {
-  display: none !important;
 }
