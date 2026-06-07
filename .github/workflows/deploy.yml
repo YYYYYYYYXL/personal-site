@@ -23,13 +23,13 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          ssh -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
+          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
             "hostname && whoami && command -v rsync"
 
       - name: Upload files to temporary directory
         run: |
-          ssh -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
+          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
             "rm -rf /tmp/personal-site-deploy && mkdir -p /tmp/personal-site-deploy"
 
@@ -39,12 +39,12 @@ jobs:
             --exclude='README_LOCAL.txt' \
             --exclude='start-local-server.bat' \
             --exclude='start-local-server.sh' \
-            -e "ssh -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes" \
+            -e "ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes" \
             ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/personal-site-deploy/
 
       - name: Publish to Nginx directory
         run: |
-          ssh -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
+          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} '
               set -e
 
