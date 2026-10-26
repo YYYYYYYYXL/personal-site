@@ -1,0 +1,10 @@
+/USER_CONTEXT.md
+/.codex-npm-cache/
+/v2/node_modules/
+/v2/.astro/
+/v2/.tools/
+/v2/dist/
+/v2/codex_qa/
+/v2/.env
+/v2/.env.*
+!/v2/.env.example
