@@ -49,7 +49,7 @@ npm run preview
 
 首页“能力与实践”展示服务器部署、Linux、计算机网络三张接近正方形的配图卡，内容维护在 `src/data/capabilities.ts`。项目列表使用独立项目配图卡，仅显示标题、简介与技术栈，不显示分类和状态标签。列表保留关键词搜索和 URL 查询参数，数量提示仅供读屏工具使用。详情页保留真实背景、职责与状态并提供页内目录。联系入口统一指向独立 `/contact/` 页面。移动导航支持 Escape、点击外部关闭与键盘焦点；无 JavaScript 时仍可访问导航和完整项目列表。
 
-标题使用霞鹜文楷的本地子集 Xinlei WenKai，正文与导航使用本地 Noto Sans SC 可变字体。页面有短暂淡入切换、滚动入场和筛选反馈；系统开启“减少动态效果”时取消这些动效。内容维护后如需更新标题字形，安装 Python 的 `fonttools` 与 `brotli` 后运行 `python -B scripts/prepare-heading-font.py`。普通开发、构建与部署直接使用 `public/fonts/` 中的成品，无需 Python；许可证随静态产物保留。
+标题使用霞鹜文楷的本地子集 Xinlei WenKai，正文与导航使用本地 Noto Sans SC 可变字体。动效只保留首页插画与卡片配图的滚动视差：文字、边框和导航保持稳定，页面正常跳转，搜索结果直接显示。手机减小视差幅度，系统开启“减少动态效果”时静态显示；无 JavaScript 时不隐藏内容。内容维护后如需更新标题字形，安装 Python 的 `fonttools` 与 `brotli` 后运行 `python -B scripts/prepare-heading-font.py`。普通开发、构建与部署直接使用 `public/fonts/` 中的成品，无需 Python；许可证随静态产物保留。
 
 ## 内容状态
 

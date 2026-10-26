@@ -10,7 +10,7 @@ const Heading = headingLevel;
 const cover = projectCovers[project.id as keyof typeof projectCovers];
 ---
 <article class="project-card" data-project={searchable ? '' : undefined} data-search={searchable ? `${p.title} ${p.summary} ${p.tags.join(' ')}` : undefined}>
-  <div class="project-card-image"><Image src={cover.image} alt={cover.alt} width={640} widths={cover.image.format === 'svg' ? undefined : [400, 640, 960]} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 384px" loading="lazy" /></div>
+  <div class="project-card-image" data-parallax="image"><Image src={cover.image} alt={cover.alt} width={640} widths={cover.image.format === 'svg' ? undefined : [400, 640, 960]} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 384px" loading="lazy" /></div>
   <div class="project-card-content">
     <Heading><a href={`/projects/${project.id}/`}>{p.title}</a></Heading>
     <p class="project-summary">{p.summary}</p>

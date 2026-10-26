@@ -7,7 +7,7 @@ const path = Astro.url.pathname;
 const links = [{ label: '首页', href: '/' }, { label: '项目', href: '/projects/' }, { label: '关于', href: '/about/' }, { label: '联系', href: '/contact/' }];
 ---
 <a class="skip-link" href="#main-content">跳到主要内容</a>
-<header class="site-header" transition:name="site-header" transition:animate="none">
+<header class="site-header">
   <div class="header-inner shell">
     <a class="brand" href="/" aria-label="于鑫磊的个人网站首页"><Image class="brand-avatar" src={avatar} alt="" width={44} height={44} densities={[1, 2]} format="webp" loading="eager" /><span class="brand-name">于鑫磊</span></a>
     <button class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle><Icon name="list" size={24} /><span>菜单</span></button>
