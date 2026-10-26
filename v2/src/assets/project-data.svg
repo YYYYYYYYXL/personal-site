@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" fill="none">
+  <defs>
+    <linearGradient id="bg" x2="960" y2="520" gradientUnits="userSpaceOnUse"><stop stop-color="#0b1b30"/><stop offset="1" stop-color="#040a12"/></linearGradient>
+    <linearGradient id="sheet" x2="0%" y2="100%"><stop stop-color="#142e4a"/><stop offset="1" stop-color="#07121e"/></linearGradient>
+    <radialGradient id="light"><stop stop-color="#0871df" stop-opacity=".23"/><stop offset="1" stop-color="#0871df" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#34658a" stroke-opacity=".13"/></pattern>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h960v520H0z"/><path fill="url(#grid)" d="M0 0h960v520H0z"/><ellipse cx="500" cy="270" rx="440" ry="260" fill="url(#light)"/>
+  <g stroke="#1c4d7c" stroke-width="1.5"><rect x="131" y="104" width="260" height="314" rx="16" fill="#07121e" transform="rotate(-9 131 104)"/><rect x="174" y="91" width="260" height="314" rx="16" fill="url(#sheet)" transform="rotate(-3 174 91)"/></g>
+  <g transform="translate(205 124) rotate(-3)">
+    <path d="M0 54h197M0 89h197M0 124h197M0 159h197M0 194h197M0 229h197M51 54v175m73-175v175" stroke="#254a6c"/>
+    <g fill="#3da4ff"><rect width="45" height="8" rx="4"/><rect y="22" width="118" height="5" rx="2.5" opacity=".45"/></g>
+    <g stroke="#7197b9" stroke-width="5" stroke-linecap="round"><path d="M11 71h25m30 0h42m31 0h42M11 106h25m30 0h42m31 0h42M11 141h25m30 0h42m31 0h42M11 176h25m30 0h42m31 0h42M11 211h25m30 0h42m31 0h42" opacity=".55"/></g>
+  </g>
+  <path d="M450 258h65m-12-9 12 9-12 9M656 258h49m-12-9 12 9-12 9" stroke="#2d92ec" stroke-width="2"/>
+  <g stroke="#3177b2" fill="#0c2035" stroke-width="1.5"><ellipse cx="588" cy="215" rx="48" ry="18"/><path d="M540 215v75c0 24 96 24 96 0v-75"/><path d="M540 240c0 24 96 24 96 0m-96 25c0 24 96 24 96 0" fill="none"/></g>
+  <g transform="translate(719 157)">
+    <rect width="157" height="196" rx="14" fill="url(#sheet)" stroke="#245c8e" stroke-width="1.5"/>
+    <rect x="20" y="24" width="55" height="6" rx="3" fill="#66b7ff"/>
+    <g stroke="#35658c" stroke-width="5" stroke-linecap="round"><path d="M20 57h115m-115 30h115m-115 30h115m-115 30h115"/></g>
+    <g fill="#187ada"><rect x="20" y="65" width="42" height="11" rx="3"/><rect x="70" y="95" width="65" height="11" rx="3"/><rect x="20" y="125" width="78" height="11" rx="3"/><rect x="106" y="155" width="29" height="11" rx="3"/></g>
+  </g>
+  <g fill="#91b7da" font-family="sans-serif" font-size="17" letter-spacing="2" text-anchor="middle"><text x="303" y="454">CSV</text><text x="588" y="359">PROCESS</text><text x="798" y="398">EXPLORE</text></g>
+  <path d="M40 60h230m460 0h190M40 470h115m700 0h65" stroke="#16436c"/><circle cx="270" cy="60" r="3" fill="#2a9bff"/>
+</svg>

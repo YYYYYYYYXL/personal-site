@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import type { capabilities } from '../data/capabilities';
+interface Props { capability: typeof capabilities[number]; }
+const { capability } = Astro.props;
+---
+<article class="capability-card">
+  <div class="capability-image"><Image src={capability.image} alt={capability.alt} width={640} loading="lazy" /></div>
+  <div class="capability-content">
+    <h3>{capability.title}</h3>
+    <p>{capability.description}</p>
+    <ul class="tag-list" aria-label="相关技术">{capability.tags.map(tag => <li>{tag}</li>)}</ul>
+  </div>
+</article>

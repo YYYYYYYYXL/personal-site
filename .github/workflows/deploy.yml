@@ -6,59 +6,75 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: personal-site-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      SERVER_USER: ${{ secrets.SERVER_USER }}
+      STAGING_DIR: /tmp/personal-site-deploy-${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup SSH key
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22.23.4'
+          package-manager-cache: false
+
+      - name: Install V2 dependencies
+        working-directory: v2
+        run: npm ci --no-audit --no-fund
+
+      - name: Check and build V2
+        working-directory: v2
         run: |
+          npm run check
+          npm run build
+          node scripts/codex_check-build.mjs
+
+      - name: Setup SSH key
+        env:
+          DEPLOY_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        run: |
+          umask 077
           mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/personal_site_deploy
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/personal_site_deploy
           chmod 600 ~/.ssh/personal_site_deploy
-          ssh-keyscan -p 60000 -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -p 60000 -H "$SERVER_HOST" >> ~/.ssh/known_hosts
 
       - name: Test SSH connection
         run: |
-          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
-            "hostname && whoami && command -v rsync"
+          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes -o BatchMode=yes \
+            "$SERVER_USER@$SERVER_HOST" \
+            "command -v rsync && command -v curl && test -d /var/www/personal-site && test ! -L /var/www/personal-site"
 
       - name: Upload files to temporary directory
         run: |
-          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
-            "rm -rf /tmp/personal-site-deploy && mkdir -p /tmp/personal-site-deploy"
+          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes -o BatchMode=yes \
+            "$SERVER_USER@$SERVER_HOST" "mkdir -p '$STAGING_DIR'"
 
-          rsync -avz --delete \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='README_LOCAL.txt' \
-            --exclude='start-local-server.bat' \
-            --exclude='start-local-server.sh' \
+          rsync -avz \
             -e "ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes" \
-            ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/personal-site-deploy/
+            v2/dist/ "$SERVER_USER@$SERVER_HOST:$STAGING_DIR/"
 
       - name: Publish to Nginx directory
         run: |
-          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} '
-              set -e
+          ssh -p 60000 -i ~/.ssh/personal_site_deploy -o IdentitiesOnly=yes -o BatchMode=yes \
+            "$SERVER_USER@$SERVER_HOST" "bash -s -- '$STAGING_DIR'" \
+            < .github/scripts/publish-static.sh
 
-              BACKUP_DIR="/var/www/personal-site-backups/personal-site-$(date +%Y%m%d-%H%M%S)"
-              mkdir -p "$BACKUP_DIR"
-
-              if [ -d /var/www/personal-site ]; then
-                rsync -a /var/www/personal-site/ "$BACKUP_DIR"/
-              fi
-
-              rsync -av --delete /tmp/personal-site-deploy/ /var/www/personal-site/
-
-              find /var/www/personal-site -type d -exec chmod 755 {} \;
-              find /var/www/personal-site -type f -exec chmod 644 {} \;
-
-              echo "Deploy finished."
-            '
+      - name: Remove runner SSH key
+        if: always()
+        run: rm -f ~/.ssh/personal_site_deploy

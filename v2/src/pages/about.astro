@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import avatar from '../assets/avatar.jpg';
+import { profile, practiceGroups } from '../data/profile';
+---
+<BaseLayout title="关于我 · 于鑫磊" description="认识于鑫磊：内蒙古师范大学数据科学与大数据技术专业 2027 届本科生，关注 Python、数据与 AI 的实际应用。">
+  <section class="shell about-intro page-intro"><div><h1>关于我<span class="accent">。</span></h1><p class="about-lead">一名还在探索中的开发者，<br />也是不断向问题深处走的学习者。</p><p>{profile.school} · {profile.college}<br />{profile.major} · {profile.graduation}本科生</p><Button href="/contact/" variant="secondary">联系我</Button></div><figure class="about-avatar"><Image src={avatar} alt="我使用的二次元编程人物头像" width={480} height={480} format="webp" loading="eager" /></figure></section>
+  <section class="shell about-story"><div><h2>沿着实际问题，<br />理解技术如何发生。</h2><p>我就读于内蒙古师范大学数据科学与大数据技术专业，2023 年入学，预计 2027 年毕业。当前主要推进图像去噪毕业设计，也在继续学习 Python 开发、数据工程和 AI 应用。</p><p>我喜欢从具体任务开始：处理一份数据、训练一个模型、把应用部署上线，再回过头理解背后的代码、配置和取舍。部署与排障是其中一部分，数据和应用同样是我希望继续深入的方向。</p><p>我的不少实践借助了开源代码与 AI 工具。我会区分自己做过的工作与原作者的成果，也努力提高独立编程、文档整理和系统性解决问题的能力。</p></div></section>
+  <section class="shell section-space" aria-labelledby="practice-title"><div class="section-heading"><div><h2 id="practice-title">在项目里积累的能力<span class="accent">。</span></h2></div><p class="section-heading-aside">用具体工作说明实践，持续补齐基础。</p></div><div class="practice-list">{practiceGroups.map(group => <article><div><h3>{group.title}</h3><p class="practice-tools">{group.tools}</p><p>{group.text}</p></div></article>)}</div></section>
+  <section class="shell about-story education"><div><h2>学习经历与个人兴趣</h2><div class="education-entry"><span>2023 — 2027（预计）</span><h3>内蒙古师范大学</h3><p>数据科学与大数据技术 · 本科</p></div><div class="interests"><article><Icon name="aperture" size={25} /><h3>图像与 AI</h3><p>关心模型背后的方法，也关心真实图像最终呈现的效果。</p></article><article><Icon name="terminal-window" size={25} /><h3>工具与系统</h3><p>在 Linux、开发工具和网络实验中，理解应用如何运行。</p></article><article><Icon name="notebook" size={25} /><h3>记录与复盘</h3><p>把操作过程、问题与取舍写下来，让实践逐渐变得有迹可循。</p></article></div></div></section>
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/Button.astro';
+import Icon from '../../components/Icon.astro';
+import researchImage from '../../assets/image-research.png';
+import studio from '../../assets/night-studio.png';
+
+export async function getStaticPaths() {
+  const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+  return projects.map((project, index) => ({ params: { id: project.id }, props: { project, next: projects[(index + 1) % projects.length] } }));
+}
+interface Props { project: CollectionEntry<'projects'>; next: CollectionEntry<'projects'>; }
+const { project, next } = Astro.props;
+const { Content, headings } = await render(project);
+const p = project.data;
+const toc = headings.filter(heading => heading.depth === 2);
+---
+<BaseLayout title={`${p.title} · 于鑫磊`} description={p.summary}>
+  <div class="shell detail-intro">
+    <a class="back-link" href="/projects/"><Icon name="arrow-left" size={18} />回到全部项目</a>
+    
+    <h1>{p.title}<span class="accent">。</span></h1><p class="detail-lead">{p.summary}</p>
+    <dl class="project-facts"><div><dt>项目类型</dt><dd>{p.categoryLabel}</dd></div><div><dt>我的工作</dt><dd>{p.role}</dd></div><div><dt>时间</dt><dd>{p.period}</dd></div><div><dt>当前状态</dt><dd class="accent">{p.statusLabel}</dd></div></dl>
+    <div class="detail-actions"><ul class="tag-list">{p.tags.map(tag => <li>{tag}</li>)}</ul><div>{p.links.map(link => <Button href={link.url} external variant="secondary">{link.label}</Button>)}</div></div>
+    {p.cover !== 'none' && <figure class="detail-cover"><Image src={p.cover === 'research' ? researchImage : studio} alt={p.cover === 'research' ? '图像去噪主题的视觉插画，非真实实验结果' : '虚构深夜工作室主题插画'} widths={[640, 960, 1280]} sizes="(max-width: 1200px) 100vw, 1200px" format="webp" loading="eager" /></figure>}
+  </div>
+  <div class="shell article-layout">
+    <aside class="article-toc" aria-label="本页目录"><nav>{toc.map(heading => <a href={`#${heading.slug}`}>{heading.text}</a>)}</nav></aside>
+    <article class="prose"><Content /></article>
+  </div>
+  <section class="shell next-project"><div><h2>下一个项目</h2></div><a href={`/projects/${next.id}/`}>{next.data.title}<Icon name="arrow-right" size={26} /></a></section>
+</BaseLayout>

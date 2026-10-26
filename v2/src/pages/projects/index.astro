@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="项目 · 于鑫磊" description="于鑫磊的项目与实践：图像去噪毕业设计、Magic Resume 部署与 CI/CD、商品数据分析与个人网站。">
+  <div class="shell page-intro"><h1>把探索，写进项目里<span class="accent">。</span></h1><p>从一项毕业设计，到一次真实部署。<br />这里记录项目背景、实际工作，以及还在继续的部分。</p></div>
+  <section class="shell project-library" aria-label="项目列表" data-project-library>
+    <div class="project-toolbar" data-filter-controls hidden>
+      <label class="project-search"><Icon name="magnifying-glass" size={19} /><span class="sr-only">搜索项目名称或技术</span><input type="search" name="q" placeholder="搜索名称或技术" autocomplete="off" data-project-search /></label>
+    </div>
+    <p class="sr-only" role="status" aria-live="polite" data-result-count>共 {projects.length} 个项目</p>
+    <div class="project-list">{projects.map(project => <ProjectCard project={project} headingLevel="h2" searchable />)}</div>
+    <div class="empty-state" data-empty-state hidden><Icon name="magnifying-glass" size={32} /><h2>暂时没有匹配的项目</h2><p>换个关键词，或试试查看全部。</p><button type="button" class="button button--secondary" data-reset-filters>重置筛选</button></div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,9 @@
+---
+import Icon from './Icon.astro';
+import { profile } from '../data/profile';
+---
+<footer class="site-footer shell" transition:name="site-footer" transition:animate="none">
+  <a href="/" class="footer-signature">Xinlei Yu</a>
+  <p>© {new Date().getFullYear()} 于鑫磊</p>
+  <nav class="footer-links" aria-label="页脚导航"><a href="/contact/">联系我</a><a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="在 GitHub 查看我的主页">GitHub<Icon name="arrow-up-right" size={15} /></a></nav>
+</footer>

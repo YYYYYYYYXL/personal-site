@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { projectCovers } from '../data/projectCovers';
+interface Props { project: CollectionEntry<'projects'>; headingLevel?: 'h2' | 'h3'; searchable?: boolean; }
+const { project, headingLevel = 'h3', searchable = false } = Astro.props;
+const p = project.data;
+const Heading = headingLevel;
+const cover = projectCovers[project.id as keyof typeof projectCovers];
+---
+<article class="project-card" data-project={searchable ? '' : undefined} data-search={searchable ? `${p.title} ${p.summary} ${p.tags.join(' ')}` : undefined}>
+  <div class="project-card-image"><Image src={cover.image} alt={cover.alt} width={640} widths={cover.image.format === 'svg' ? undefined : [400, 640, 960]} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 384px" loading="lazy" /></div>
+  <div class="project-card-content">
+    <Heading><a href={`/projects/${project.id}/`}>{p.title}</a></Heading>
+    <p class="project-summary">{p.summary}</p>
+    <div class="project-card-bottom"><ul class="tag-list" aria-label="技术栈">{p.tags.map(tag => <li>{tag}</li>)}</ul><span class="project-card-arrow" aria-hidden="true"><Icon name="arrow-right" size={21} /></span></div>
+  </div>
+</article>

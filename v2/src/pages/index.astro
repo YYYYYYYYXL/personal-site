@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import CapabilityCard from '../components/CapabilityCard.astro';
+import { capabilities } from '../data/capabilities';
+import studio from '../assets/night-studio.png';
+import { focusAreas, profile } from '../data/profile';
+---
+<BaseLayout>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-image"><Image src={studio} alt="" widths={[640, 960, 1280, 1680]} sizes="100vw" format="webp" loading="eager" fetchpriority="high" /></div>
+    <div class="hero-content shell">
+      
+      <h1 id="hero-title"><span class="hero-subtitle">在探索中学习，<br />在实践中构建。</span></h1>
+      <p class="hero-description">{profile.school} · {profile.major} · {profile.graduation}<br />关注数据、模型与应用，也记录把想法做出来的过程。</p>
+      <div class="hero-actions"><Button href="/projects/">探索我的项目</Button><Button href="/about/" variant="secondary">更多关于我</Button></div>
+    </div>
+  </section>
+
+  <section class="selected-work shell section-space" id="selected-work" aria-labelledby="work-title">
+    <div class="section-heading"><div><h2 id="work-title">能力与实践<span class="accent">。</span></h2></div><Button href="/projects/" variant="text">全部项目</Button></div>
+    <div class="capability-grid">{capabilities.map(capability => <CapabilityCard capability={capability} />)}</div>
+  </section>
+
+  <section class="focus-section shell section-space" aria-labelledby="focus-title">
+    <div class="section-heading"><div><h2 id="focus-title">保持好奇，继续深入<span class="accent">。</span></h2></div><p class="section-heading-aside">以项目为线索，慢慢拓展能力的边界。</p></div>
+    <div class="focus-list">{focusAreas.map(area => <article class="focus-item"><Icon name={area.icon} size={30} /><div><h3>{area.title}</h3><p>{area.description}</p></div><ul class="tag-list">{area.tags.map(tag => <li>{tag}</li>)}</ul></article>)}</div>
+  </section>
+
+  <section class="about-strip shell"><div><h2>不止于作品，<br />也关乎不断成长的自己。</h2><p>我是一名大数据专业本科生。喜欢沿着实际问题，理解数据、代码与系统如何协作。这里保留已经做过的事，也坦诚记录还在进行中的探索。</p><Button href="/about/" variant="text">认识一下我</Button></div><span class="about-strip-mark" aria-hidden="true">YX.</span></section>
+</BaseLayout>

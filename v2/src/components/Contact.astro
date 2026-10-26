@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+import { profile } from '../data/profile';
+---
+<section class="contact-page shell" aria-labelledby="contact-heading">
+  <div class="contact-page-intro"><h1 id="contact-heading">联系我<span class="accent">。</span></h1><p>关于项目、学习或工作机会，<br />欢迎写信给我。</p></div>
+  <div class="contact-methods">
+    <article><h2><Icon name="envelope-simple" size={22} />电子邮箱</h2><a href={`mailto:${profile.email}`}>{profile.email}<Icon name="arrow-up-right" size={25} /></a></article>
+    <article><h2><Icon name="github-logo" size={22} />GitHub</h2><a href={profile.github} target="_blank" rel="noopener noreferrer">{profile.githubName}<Icon name="arrow-up-right" size={25} /></a></article>
+  </div>
+</section>
