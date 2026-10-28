@@ -3,7 +3,6 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Button from '../../components/Button.astro';
-import Icon from '../../components/Icon.astro';
 import researchImage from '../../assets/image-research.png';
 import studio from '../../assets/night-studio.png';
 
@@ -19,7 +18,7 @@ const toc = headings.filter(heading => heading.depth === 2);
 ---
 <BaseLayout title={`${p.title} · 于鑫磊`} description={p.summary}>
   <div class="shell detail-intro">
-    <a class="back-link" href="/projects/"><Icon name="arrow-left" size={18} />回到全部项目</a>
+    <a class="back-link" href="/projects/">回到全部项目</a>
     
     <h1>{p.title}<span class="accent">。</span></h1><p class="detail-lead">{p.summary}</p>
     <dl class="project-facts"><div><dt>项目类型</dt><dd>{p.categoryLabel}</dd></div><div><dt>我的工作</dt><dd>{p.role}</dd></div><div><dt>时间</dt><dd>{p.period}</dd></div><div><dt>当前状态</dt><dd class="accent">{p.statusLabel}</dd></div></dl>
@@ -30,5 +29,5 @@ const toc = headings.filter(heading => heading.depth === 2);
     <aside class="article-toc" aria-label="本页目录"><nav>{toc.map(heading => <a href={`#${heading.slug}`}>{heading.text}</a>)}</nav></aside>
     <article class="prose"><Content /></article>
   </div>
-  <section class="shell next-project"><div><h2>下一个项目</h2></div><a href={`/projects/${next.id}/`}>{next.data.title}<Icon name="arrow-right" size={26} /></a></section>
+  <section class="shell next-project"><div><h2>下一个项目</h2></div><a href={`/projects/${next.id}/`}>{next.data.title}</a></section>
 </BaseLayout>

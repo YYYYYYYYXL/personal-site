@@ -45,7 +45,8 @@ npm run preview
 - `src/styles/global.css`：设计变量、共用组件与移动端断点。
 - `src/components/` 与 `src/layouts/`：导航、项目卡、按钮、页脚与页面骨架。
 - `src/assets/`：原头像、深夜工作室插画和研究主题插画，Astro 构建时生成 WebP 和响应式尺寸。
-- 没有接入占位简历 PDF，也没有复制旧站的指纹脚本、jQuery、评论嵌入和粒子动画。
+- `../resource/resume.pdf`：导航栏“查看简历”的原文件，由 `src/pages/resume.pdf.ts` 在构建时生成 `/resume.pdf` 静态资源。按钮在新标签页打开浏览器 PDF 阅读器，更新时替换原文件即可。开发与构建命令均从 `v2/` 目录运行。
+- 没有复制旧站的指纹脚本、jQuery、评论嵌入和粒子动画。
 
 首页“能力与实践”展示服务器部署、Linux、计算机网络三张接近正方形的配图卡，内容维护在 `src/data/capabilities.ts`。项目列表使用独立项目配图卡，仅显示标题、简介与技术栈，不显示分类和状态标签。列表保留关键词搜索和 URL 查询参数，数量提示仅供读屏工具使用。详情页保留真实背景、职责与状态并提供页内目录。联系入口统一指向独立 `/contact/` 页面。移动导航支持 Escape、点击外部关闭与键盘焦点；无 JavaScript 时仍可访问导航和完整项目列表。
 
@@ -62,7 +63,7 @@ npm run preview
 
 ## 部署边界
 
-旧版 HTML、静态资源和启动脚本已从当前工作区移除，历史版本仍可通过 Git 找回。新版使用的头像、图标和配图均独立保存在本目录中；根目录 `resource/` 中的简历 PDF 单独保留，不参与网站构建。生产发布沿用 `.github/workflows/deploy.yml` 的 GitHub Actions + SSH/rsync，不迁移 Sites 托管，不操作 Magic Resume、3X-UI、DNS 或 Nginx 配置。
+旧版 HTML、静态资源和启动脚本已从当前工作区移除，历史版本仍可通过 Git 找回。新版使用的头像、图标和配图均独立保存在本目录中；根目录 `resource/` 中的简历 PDF 在构建时生成静态文件随站点发布，原文件不重复复制到源码目录。生产发布沿用 `.github/workflows/deploy.yml` 的 GitHub Actions + SSH/rsync，不迁移 Sites 托管，不操作 Magic Resume、3X-UI、DNS 或 Nginx 配置。
 
 `main` 推送或手动触发后，工作流安装依赖、类型检查、构建、校验内部链接与素材，再仅上传 `v2/dist/`。远端脚本 `.github/scripts/publish-static.sh` 验证目标目录、备份旧站、同步静态文件并检查 HTTPS 及所有内容路由；发布检查失败时自动恢复该次备份。备份路径在 Actions 日志中输出。保留 `.well-known/` 证书验证文件，静态文件更新不重载共享 Nginx。
 

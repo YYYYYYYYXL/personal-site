@@ -1,5 +1,9 @@
 # 视觉素材记录
 
+## 当前首页主视觉：src/assets/home-workspace-background.png
+
+2026-10-28 由用户提供并指定用于首页。画面为深夜双屏工作台、笔记本电脑与窗外城市灯光，作为装饰背景使用，不代表真实工作环境或项目成果。沿用首页响应式裁切与滚动视差，不额外增强图片对比度或饱和度。以下 `night-studio.png` 仍供项目配图使用。
+
 ## 主视觉：src/assets/night-studio.png
 
 由内置 Image Gen 生成，以原网站的二次元头像作为人物参考，头像现独立保存在 `src/assets/avatar.jpg`。主视觉为虚构主题插画，不表示本人真实工作环境。源图在 `src/assets`，页面由 Astro 生成响应式 WebP；社交预览使用 `public/social-cover.jpg`。

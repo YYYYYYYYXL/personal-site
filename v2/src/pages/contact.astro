@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Contact from '../components/Contact.astro';
+import { Image } from 'astro:assets';
+import deskBackground from '../assets/contact-desk-background.png';
 ---
-<BaseLayout title="联系我 · 于鑫磊" description="通过电子邮箱或 GitHub 联系于鑫磊，交流项目、学习与工作机会。">
+<BaseLayout mainClass="contact-scene" title="联系我 · 于鑫磊" description="通过电子邮箱或 GitHub 联系于鑫磊，交流项目、学习与工作机会。">
+  <div class="contact-backdrop" aria-hidden="true">
+    <Image src={deskBackground} alt="" widths={[768, 1440, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />
+  </div>
   <Contact />
 </BaseLayout>

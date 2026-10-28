@@ -7,7 +7,7 @@
 - `v2/`：当前网站的源码、静态资源、内容和开发工具。
 - `.github/workflows/deploy.yml`：GitHub Actions 构建与部署流程。
 - `.github/scripts/publish-static.sh`：服务器上的静态文件发布、备份与失败恢复脚本。
-- `resource/my-resume-cn.pdf`：单独保留的原有简历文件，不参与当前网站构建，也未接入下载入口。
+- `resource/resume.pdf`：导航栏“查看简历”的原文件，开发时通过 `/resume.pdf` 访问，构建时输出同名静态 PDF，在新标签页中查看。更新时直接替换此文件，无需另存一份到 `public/`。
 - `USER_CONTEXT.md`：本地背景资料，被 Git 忽略，不发布到网站。
 
 旧版根目录 HTML、`assets-*`、`img/` 和旧静态预览脚本已移除。需要查看旧实现时，通过 Git 历史找回；当前网站使用的头像和配图已独立保存在 `v2/` 中。

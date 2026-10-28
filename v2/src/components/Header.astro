@@ -13,7 +13,8 @@ const links = [{ label: '首页', href: '/' }, { label: '项目', href: '/projec
     <button class="menu-toggle" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle><Icon name="list" size={24} /><span>菜单</span></button>
     <nav id="primary-navigation" class="primary-navigation" aria-label="主导航" data-navigation>
       {links.map(link => <a href={link.href} aria-current={(link.href === '/' ? path === '/' : path.startsWith(link.href)) ? 'page' : undefined}>{link.label}</a>)}
-      <a class="nav-github" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub 个人主页，新窗口打开"><Icon name="github-logo" size={20} /><span>GitHub</span><Icon name="arrow-up-right" size={15} /></a>
+      <a class="nav-github" href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub 个人主页，新窗口打开"><Icon name="github-logo" size={20} /><span>GitHub</span></a>
+      <a class="nav-resume" href="/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="查看简历 PDF，新标签页打开">查看简历</a>
     </nav>
   </div>
 </header>
