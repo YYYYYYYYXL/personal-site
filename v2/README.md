@@ -62,7 +62,7 @@ npm run preview
 
 ## 部署边界
 
-保留仓库中的旧 HTML 和旧静态资源。生产发布沿用 `.github/workflows/deploy.yml` 的 GitHub Actions + SSH/rsync，不迁移 Sites 托管，不操作 Magic Resume、3X-UI、DNS 或 Nginx 配置。
+旧版 HTML、静态资源和启动脚本已从当前工作区移除，历史版本仍可通过 Git 找回。新版使用的头像、图标和配图均独立保存在本目录中；根目录 `resource/` 中的简历 PDF 单独保留，不参与网站构建。生产发布沿用 `.github/workflows/deploy.yml` 的 GitHub Actions + SSH/rsync，不迁移 Sites 托管，不操作 Magic Resume、3X-UI、DNS 或 Nginx 配置。
 
 `main` 推送或手动触发后，工作流安装依赖、类型检查、构建、校验内部链接与素材，再仅上传 `v2/dist/`。远端脚本 `.github/scripts/publish-static.sh` 验证目标目录、备份旧站、同步静态文件并检查 HTTPS 及所有内容路由；发布检查失败时自动恢复该次备份。备份路径在 Actions 日志中输出。保留 `.well-known/` 证书验证文件，静态文件更新不重载共享 Nginx。
 

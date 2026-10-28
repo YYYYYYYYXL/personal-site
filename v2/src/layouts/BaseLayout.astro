@@ -4,8 +4,8 @@ import Footer from '../components/Footer.astro';
 import { profile } from '../data/profile';
 import '@fontsource-variable/noto-sans-sc';
 import '../styles/global.css';
-interface Props { title?: string; description?: string; noindex?: boolean; }
-const { title = '于鑫磊 · 数据、模型与应用', description = profile.description, noindex = false } = Astro.props;
+interface Props { title?: string; description?: string; noindex?: boolean; mainClass?: string; }
+const { title = '于鑫磊 · 数据、模型与应用', description = profile.description, noindex = false, mainClass } = Astro.props;
 const canonical = new URL(noindex ? '/404.html' : Astro.url.pathname, profile.site).href;
 const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Person', name: profile.name, url: profile.site, sameAs: [profile.github], affiliation: { '@type': 'CollegeOrUniversity', name: profile.school }, description: profile.description }).replace(/</g, '\\u003c');
 ---
@@ -35,7 +35,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Pers
   </head>
   <body>
     <Header />
-    <main id="main-content" tabindex="-1"><slot /></main>
+    <main id="main-content" class={mainClass} tabindex="-1"><slot /></main>
     <Footer />
     <script>import '../scripts/site';</script>
   </body>

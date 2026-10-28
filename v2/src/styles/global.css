@@ -163,6 +163,15 @@
   .page-intro { padding-top: 83px; padding-bottom: 64px; }
   .page-intro h1 { font-size: clamp(34px, 4.4vw, 54px); margin-block: 22px; }
   .page-intro > p:last-child, .page-intro > div > p { color: var(--muted); line-height: 1.95; }
+  .projects-page { position: relative; isolation: isolate; min-height: calc(100svh - 82px); }
+  .projects-backdrop-track { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: clip; }
+  .projects-backdrop { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--bg); }
+  .projects-backdrop img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .projects-backdrop::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(3 7 12 / 28%), rgb(3 7 12 / 12%) 38%, rgb(3 7 12 / 42%) 80%, rgb(3 7 12 / 88%)), linear-gradient(90deg, rgb(3 7 12 / 22%), transparent 24% 76%, rgb(3 7 12 / 22%)); }
+  .projects-page .page-intro { position: relative; }
+  .projects-page .page-intro h1 { text-shadow: 0 2px 18px rgb(0 0 0 / 70%); }
+  .projects-page .page-intro p { color: #c2d0e2; text-shadow: 0 1px 8px #03070c, 0 2px 20px #03070c; }
+  .projects-page .project-card { background: linear-gradient(150deg, rgb(7 18 31 / 92%), rgb(4 10 17 / 97%)); }
   .project-toolbar { display: flex; justify-content: end; align-items: center; padding-bottom: 24px; }
   .project-search { display: flex; align-items: center; gap: 9px; color: var(--muted); padding: 9px 13px; background: #08111f; border: 1px solid var(--line); border-radius: 7px; }
   .project-search:focus-within { border-color: var(--blue); }
@@ -318,6 +327,9 @@
     .site-footer > p { order: 3; grid-column: 1 / -1; font-size: 10px; }
     .footer-links { font-size: 11px; gap: 18px; }
     .page-intro { padding-block: 48px 38px; }
+    .projects-page { min-height: calc(100svh - 70px); }
+    .projects-backdrop img { object-position: 58% center; }
+    .projects-backdrop::after { background: linear-gradient(180deg, rgb(3 7 12 / 44%), rgb(3 7 12 / 24%) 35%, rgb(3 7 12 / 65%) 85%, rgb(3 7 12 / 92%)); }
     .page-intro h1 { font-size: 33px; line-height: 1.55; margin-block: 18px; }
     .page-intro > p:last-child { font-size: 14px; }
     .project-search { width: 100%; }

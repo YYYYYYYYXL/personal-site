@@ -2,7 +2,7 @@
 
 ## 主视觉：src/assets/night-studio.png
 
-由内置 Image Gen 生成，以旧站 `assets-index/profile.jpg` 作为人物参考。网页中明确标注为主题插画，不表示本人真实工作环境。源图在 `src/assets`，页面由 Astro 生成响应式 WebP；社交预览使用 `public/social-cover.jpg`。
+由内置 Image Gen 生成，以原网站的二次元头像作为人物参考，头像现独立保存在 `src/assets/avatar.jpg`。主视觉为虚构主题插画，不表示本人真实工作环境。源图在 `src/assets`，页面由 Astro 生成响应式 WebP；社交预览使用 `public/social-cover.jpg`。
 
 生成提示词：
 
@@ -24,7 +24,7 @@
 - `src/assets/project-data.svg`：本站绘制的 CSV、处理、浏览流程概念图，用于商品分析卡片，不包含真实统计值，不是系统截图。没有使用旧素材中的爬虫和模拟仪表盘。
 - 四个项目的封面及替代文本统一维护在 `src/data/projectCovers.ts`，共用卡片通过 Astro 输出响应式位图或轻量 SVG。
 
-- `src/assets/avatar.jpg`、`public/favicon.png`：沿用旧站头像，不改动旧文件。
+- `src/assets/avatar.jpg`、`public/favicon.png`：从旧站沿用并独立保存的头像与站点图标，不依赖已删除的旧资源目录。
 - 图标：`@iconify-json/ph` 中的 Phosphor 图标，采用库提供的图形并在构建时输出，无额外客户端图标脚本。
 - 字体：标题为霞鹜文楷 500 的本地字形子集，依 OFL 要求更名为 Xinlei WenKai；正文为 Noto Sans SC 可变字体，通过 Fontsource 构建为本地资源，无第三方字体 CDN 请求。许可证见 `public/fonts/OFL-LXGW-WenKai.txt` 与 `public/fonts/OFL-Noto-Sans-SC.txt`。
 - 旧站的商品分析、简历制作概念图未作为真实项目截图使用。

@@ -80,13 +80,26 @@ function initializePage() {
   const focusBackdrop = document.querySelector<HTMLElement>('.focus-backdrop');
   const citySection = document.querySelector<HTMLElement>('.about-strip-section');
   const cityBackdrop = document.querySelector<HTMLElement>('.city-backdrop');
+  const projectsPage = document.querySelector<HTMLElement>('.projects-page');
   let animationFrame = 0;
+
+  function parallaxRange(element: HTMLElement, height: number) {
+    if (element.dataset.parallax === 'projects') {
+      return window.innerWidth <= 760 ? Math.min(90, height * 0.1) : Math.min(220, height * 0.2);
+    }
+    if (element.dataset.parallax === 'hero') return Math.min(110, height * 0.18);
+    if (element.dataset.parallax === 'scene') return Math.min(140, height * 0.3);
+    return Math.min(30, height * 0.15);
+  }
 
   function updateParallax() {
     animationFrame = 0;
     if (reducedMotion.matches || document.hidden) return;
     const viewportHeight = window.innerHeight;
     const mobile = window.innerWidth <= 760;
+    // Map the whole current scroll range to a bounded image crop, including after search.
+    const scrollExtent = Math.max(0, document.documentElement.scrollHeight - viewportHeight);
+    const pageProgress = scrollExtent > 0 ? Math.max(0, Math.min(1, window.scrollY / scrollExtent)) : 0.5;
     // Start the new scene only after the hero has scrolled above mid-screen.
     // The reveal follows scroll position in both directions, with no timed autoplay.
     const revealStart = viewportHeight * 0.5;
@@ -110,7 +123,8 @@ function initializePage() {
       if (element.closest('[hidden]') || rect.bottom < 0 || rect.top > viewportHeight) return null;
       const hero = element.dataset.parallax === 'hero';
       const scene = element.dataset.parallax === 'scene';
-      const range = hero ? Math.min(110, rect.height * 0.18) : scene ? Math.min(140, rect.height * 0.3) : Math.min(30, rect.height * 0.15);
+      const range = parallaxRange(element, element.clientHeight);
+      if (element.dataset.parallax === 'projects') return { element, offset: range * (1 - 2 * pageProgress) };
       const distance = hero ? Math.max(0, -rect.top) : viewportHeight / 2 - rect.top - rect.height / 2;
       const speed = hero ? (mobile ? 0.12 : 0.24) : scene ? (mobile ? 0.15 : 0.28) : (mobile ? 0.05 : 0.09);
       return { element, offset: Math.max(-range, Math.min(range, distance * speed)) };
@@ -135,11 +149,7 @@ function initializePage() {
     animationFrame = 0;
     const ranges = layers.map(element => ({
       element,
-      range: element.dataset.parallax === 'hero'
-        ? Math.min(110, element.clientHeight * 0.18)
-        : element.dataset.parallax === 'scene'
-          ? Math.min(140, element.clientHeight * 0.3)
-          : Math.min(30, element.clientHeight * 0.15),
+      range: parallaxRange(element, element.clientHeight),
     }));
     ranges.forEach(({ element, range }) => {
       element.classList.toggle('parallax-active', !reducedMotion.matches);
@@ -165,7 +175,9 @@ function initializePage() {
   }, { signal });
   reducedMotion.addEventListener('change', configureParallax, { signal });
   configureParallax();
-  disposePage = () => { controller.abort(); cancelAnimationFrame(animationFrame); };
+  const pageResizeObserver = projectsPage ? new ResizeObserver(scheduleParallax) : undefined;
+  if (projectsPage) pageResizeObserver?.observe(projectsPage);
+  disposePage = () => { controller.abort(); cancelAnimationFrame(animationFrame); pageResizeObserver?.disconnect(); };
 }
 
 window.addEventListener('pagehide', () => disposePage?.());
