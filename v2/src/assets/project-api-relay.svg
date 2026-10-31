@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" fill="none">
+  <defs>
+    <linearGradient id="bg" x2="960" y2="520" gradientUnits="userSpaceOnUse"><stop stop-color="#0c2036"/><stop offset="1" stop-color="#030910"/></linearGradient>
+    <linearGradient id="panel" x2="0%" y2="100%"><stop stop-color="#142f4b"/><stop offset="1" stop-color="#081420"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#34658a" stroke-opacity=".14"/></pattern>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h960v520H0z"/><path fill="url(#grid)" d="M0 0h960v520H0z"/>
+  <g stroke="#174368" stroke-width="2"><path d="M40 92h170l32-24h475l32 24h171M40 428h170l32 24h475l32-24h171"/></g>
+  <g stroke="#287bbf" stroke-width="2"><path d="M246 215h112m238 0h102M480 300v45m0 0H356v25m124-25h124v25M826 160v-30M826 270v30"/></g>
+  <g fill="url(#panel)" stroke="#245c8e" stroke-width="1.5"><rect x="80" y="150" width="166" height="130" rx="20"/><rect x="358" y="130" width="238" height="170" rx="22"/><rect x="698" y="150" width="166" height="130" rx="20"/><rect x="290" y="370" width="132" height="52" rx="12"/><rect x="538" y="370" width="132" height="52" rx="12"/></g>
+  <g stroke="#88c5ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="120" y="181" width="86" height="56" rx="6"/><path d="M143 251h40m-20-14v14m-13-56-12 14 12 14m26-28 12 14-12 14"/><rect x="421" y="168" width="112" height="79" rx="10"/><path d="M440 187h37m-37 20h75m-75 20h48m-15 20v22m-21 0h42"/><circle cx="781" cy="215" r="21"/><circle cx="740" cy="185" r="7"/><circle cx="824" cy="185" r="7"/><circle cx="740" cy="246" r="7"/><circle cx="824" cy="246" r="7"/><path d="m747 190 17 13m34 0 19-13m-70 51 17-13m34 0 19 13"/></g>
+  <g font-family="system-ui,sans-serif" text-anchor="middle" letter-spacing="2"><text x="163" y="319" fill="#7299ba" font-size="17">CLIENT</text><text x="477" y="100" fill="#55b2ff" font-size="17">API GATEWAY</text><text x="781" y="319" fill="#7299ba" font-size="17">MODELS</text><text x="356" y="403" fill="#92badb" font-size="14">DATABASE</text><text x="604" y="403" fill="#92badb" font-size="14">CACHE</text></g>
+</svg>
