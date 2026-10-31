@@ -14,6 +14,7 @@ const siteRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => ne
 assert.equal(pages.length, siteRoutes.length + 1, '内容页面与 sitemap 应一致，并额外包含 404');
 for (const route of ['/notes/', '/notes/ssh-sshd/', '/notes/tls-1-3/', '/notes/ubuntu-operations/', '/notes/wireshark-protocols/', '/notes/hydra-kali/']) assert(siteRoutes.includes(route), `缺少笔记路由：${route}`);
 assert(siteRoutes.includes('/projects/new-api-relay/'), '缺少 New API 项目详情页');
+assert(siteRoutes.includes('/projects/3x-ui-xray/'), '缺少 3X-UI 项目详情页');
 const byPath = new Map();
 for (const page of pages) byPath.set(page, await readFile(page, 'utf8'));
 const forbidden = /USER_CONTEXT\.md|SERVER_SSH_KEY|panel\.yuxinlei\.cloud|59995|56641|43\.167\.157\.131|-----BEGIN (?:OPENSSH |RSA |EC )?PRIVATE KEY-----/;
