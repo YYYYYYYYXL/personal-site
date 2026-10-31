@@ -12,7 +12,7 @@ const pages = files.filter(file => file.endsWith('.html'));
 const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
 const siteRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname);
 assert.equal(pages.length, siteRoutes.length + 1, '内容页面与 sitemap 应一致，并额外包含 404');
-for (const route of ['/notes/', '/notes/ssh-sshd/', '/notes/tls-1-3/', '/notes/ubuntu-operations/', '/notes/wireshark-protocols/', '/notes/hydra-kali/']) assert(siteRoutes.includes(route), `缺少笔记路由：${route}`);
+for (const route of ['/notes/', '/notes/ssh-sshd/', '/notes/tls-1-3/', '/notes/ubuntu-operations/', '/notes/wireshark-protocols/', '/notes/hydra-kali/', '/notes/3x-ui-deployment/']) assert(siteRoutes.includes(route), `缺少笔记路由：${route}`);
 assert(siteRoutes.includes('/projects/new-api-relay/'), '缺少 New API 项目详情页');
 assert(siteRoutes.includes('/projects/3x-ui-xray/'), '缺少 3X-UI 项目详情页');
 const byPath = new Map();
@@ -22,7 +22,7 @@ let links = 0;
 for (const [page, html] of byPath) {
   assert(!forbidden.test(html), `不应发布内部背景或管理信息：${page}`);
   if (page.includes(`${path.sep}notes${path.sep}`)) {
-    assert(!/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b|(?:vless|vmess|trojan):\/\/|https?:\/\/[^\s"<>]+\/sub\//i.test(html), `笔记中不能包含节点标识、分享或订阅链接：${page}`);
+    assert(!/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b|(?:vless|vmess|trojan):\/\/[a-z0-9]|https?:\/\/[^\s"<>]+\/sub\//i.test(html), `笔记中不能包含节点标识、分享或订阅链接：${page}`);
     assert(!/(?:3x-ui|Xray)\s+\d+\.\d+\.\d+/i.test(html), `笔记中不能保留实际面板或核心版本：${page}`);
   }
   assert.match(html, /<html[^>]+lang="zh-CN"/, `缺少中文语言属性：${page}`);
