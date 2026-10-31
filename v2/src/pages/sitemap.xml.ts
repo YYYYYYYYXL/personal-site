@@ -4,7 +4,8 @@ import { profile } from '../data/profile';
 
 export const GET: APIRoute = async () => {
   const projects = await getCollection('projects');
-  const routes = ['/', '/projects/', '/about/', '/contact/', ...projects.map(project => `/projects/${project.id}/`)];
+  const notes = (await getCollection('notes')).filter(note => note.data.kind === 'note');
+  const routes = ['/', '/projects/', '/notes/', '/about/', '/contact/', ...projects.map(project => `/projects/${project.id}/`), ...notes.map(note => `/notes/${note.id}/`)];
   const urls = routes.map(route => `<url><loc>${new URL(route, profile.site).href}</loc></url>`).join('');
   return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });
 };

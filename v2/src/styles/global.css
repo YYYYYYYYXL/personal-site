@@ -119,6 +119,30 @@
 }
 
 @layer pages {
+  .notes-intro { padding-bottom: 40px; }
+  .notes-intro-copy { max-width: 820px; font-size: 14px; }
+  .notes-intro-copy h3 { font-size: 18px; margin: 20px 0 10px; }
+  .notes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .note-card { position: relative; isolation: isolate; display: flex; flex-direction: column; aspect-ratio: 1.08; min-width: 0; padding: 30px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(145deg, #0a192a, #050c14); transition: border-color .18s ease, background-color .18s ease; }
+  .note-card > .icon { color: var(--blue); margin-bottom: 26px; }
+  .note-card h2 { font-size: 24px; line-height: 1.5; margin-bottom: 16px; }
+  .note-card h2 a::after { content: ''; position: absolute; inset: 0; }
+  .note-card p { color: var(--muted); font-size: 14px; line-height: 1.9; margin-bottom: 25px; }
+  .note-card .tag-list { margin-top: auto; gap: 8px; }
+  .note-card .tag-list li { border: 1px solid #20374e; border-radius: 20px; padding: 2px 10px; }
+  .note-card:hover, .note-card:focus-within { border-color: #2875ac; }
+  .note-card:focus-within { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .note-topics { margin-top: 24px; }
+  .note-article { grid-template-columns: 250px minmax(0, 1fr); gap: 50px; }
+  .note-article .article-toc nav { max-height: calc(100svh - 155px); overflow-y: auto; padding-right: 12px; scrollbar-width: thin; }
+  .note-article .prose { overflow-wrap: anywhere; }
+  .note-article .prose h3, .note-article .prose h4 { scroll-margin-top: 115px; }
+  .note-article .prose h4 { font-size: 17px; margin-block: 24px 12px; }
+  .note-article .prose table { display: block; overflow-x: auto; max-width: 100%; }
+  .note-article .prose blockquote { margin-block: 24px; padding: 16px 20px; border-left: 2px solid var(--blue); background: #081524; }
+  .note-article .prose blockquote > :last-child { margin-bottom: 0; }
+  .note-article .prose hr { border: 0; border-top: 1px solid var(--line); margin-block: 35px; }
+  .note-sources { margin-top: 50px; color: var(--quiet); font-size: 13px; }
   .contact-scene { position: relative; isolation: isolate; }
   .contact-backdrop { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: var(--bg); }
   .contact-backdrop img { width: 100%; height: 100%; object-fit: cover; object-position: center 65%; }
@@ -250,11 +274,22 @@
 }
 
 @layer responsive {
+  @media (min-width: 761px) and (max-width: 1000px) {
+    .header-inner { gap: 16px; }
+    .brand { gap: 10px; }
+    .brand-name { font-size: 14px; }
+    .primary-navigation { gap: 4px; font-size: 13px; }
+    .primary-navigation > a { padding-inline: 12px; }
+    .primary-navigation .nav-github { margin-left: 10px; padding-inline: 10px; }
+    .nav-github::before { left: -8px; }
+  }
   @media (min-width: 1700px) {
     .hero { min-height: 750px; }
     .hero-image img { object-position: center 45%; }
   }
   @media (max-width: 1100px) {
+    .notes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .note-article { grid-template-columns: 190px minmax(0, 1fr); gap: 30px; }
     .shell { width: calc(100% - 64px); }
     .hero { min-height: 650px; }
     .hero-image img { object-position: 55% center; }
@@ -270,6 +305,10 @@
     .about-story, .practice-list > article { grid-template-columns: minmax(0, 1fr); gap: 35px; }
   }
   @media (max-width: 760px) {
+    .notes-grid { grid-template-columns: 1fr; gap: 18px; }
+    .note-card { padding: 26px; }
+    .note-article { grid-template-columns: 1fr; gap: 28px; }
+    .note-article .article-toc nav { max-height: 220px; overflow-y: auto; flex-direction: column; flex-wrap: nowrap; }
     .contact-backdrop img { object-position: 72% center; }
     .contact-backdrop::after { background: linear-gradient(180deg, rgb(3 7 12 / 58%), rgb(3 7 12 / 55%) 55%, rgb(3 7 12 / 36%) 80%, var(--bg)); }
     .contact-page { grid-template-columns: 1fr; min-height: calc(100svh - 279px); gap: 30px; padding-block: 55px 35px; }

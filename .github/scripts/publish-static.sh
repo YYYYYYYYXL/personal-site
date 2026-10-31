@@ -13,6 +13,7 @@ test -f "$STAGING_DIR/index.html"
 test -f "$STAGING_DIR/projects/index.html"
 test -f "$STAGING_DIR/about/index.html"
 test -f "$STAGING_DIR/contact/index.html"
+test -f "$STAGING_DIR/notes/index.html"
 test -f "$STAGING_DIR/sitemap.xml"
 test -d "$STAGING_DIR/_astro"
 test ! -e "$STAGING_DIR/USER_CONTEXT.md"
@@ -49,7 +50,7 @@ curl --fail --silent --show-error --max-time 20 --retry 2 \
   --resolve yuxinlei.cloud:443:127.0.0.1 https://yuxinlei.cloud/ \
   --output "$STAGING_DIR/codex_live_home.html"
 cmp "$STAGING_DIR/index.html" "$STAGING_DIR/codex_live_home.html"
-for route in projects about contact projects/image-denoising projects/magic-resume projects/product-analysis projects/personal-site; do
+for route in projects about contact projects/image-denoising projects/magic-resume projects/product-analysis projects/personal-site notes notes/ssh-sshd notes/tls-1-3 notes/ubuntu-operations notes/wireshark-protocols notes/hydra-kali; do
   curl --fail --silent --show-error --max-time 20 --retry 2 \
     --resolve yuxinlei.cloud:443:127.0.0.1 "https://yuxinlei.cloud/$route/" \
     --output /dev/null

@@ -1,0 +1,15 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+export async function getStaticPaths() {
+  return (await getCollection('notes')).filter(note => note.data.kind === 'note').map(note => ({params:{id:note.id},props:{note}}));
+}
+interface Props { note: CollectionEntry<'notes'>; }
+const { note } = Astro.props;
+const { Content, headings } = await render(note);
+const toc = headings.filter(heading => heading.depth === 2);
+---
+<BaseLayout title={`${note.data.title} · 笔记 · 于鑫磊`} description={note.data.description}>
+  <header class="shell detail-intro"><a class="back-link" href="/notes/">全部笔记</a><h1>{note.data.title}<span class="accent">。</span></h1><p class="detail-lead">{note.data.description}</p><ul class="tag-list note-topics">{note.data.tags.map(tag => <li>{tag}</li>)}</ul></header>
+  <div class="shell article-layout note-article"><aside class="article-toc" aria-label="本页目录"><nav>{toc.map(heading => <a href={`#${heading.slug}`}>{heading.text}</a>)}</nav></aside><article class="prose"><Content /><footer class="note-sources"><h2>整理来源</h2><ul>{note.data.sources.map(source => <li>{source}</li>)}</ul></footer></article></div>
+</BaseLayout>

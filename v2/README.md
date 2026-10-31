@@ -40,6 +40,8 @@ npm run preview
 
 ## 内容维护
 
+笔记入口位于 `/notes/`，主题正文由 `src/content/notes/*.md` 管理，介绍部分来自知识库 README。TLS 三个版本整合为一个主题，其余文档按 SSH、Ubuntu、Wireshark 和 Hydra 分页。网站副本中的实际部署信息已脱敏：Ubuntu 运维由 `scripts/templates/ubuntu-operations-public.md` 提供通用公开版，TLS 实际节点映射章节改为通用 HTTPS 案例；不保留实际面板/核心版本、监听组合、节点目标或订阅信息。原始知识库文件不修改。需要重新导入时，在 `v2/` 中运行 `node scripts/import-notes.mjs D:\CodeRepository\knowledge`；导入会覆盖网站笔记并重新执行脱敏规则。网站构建直接使用已导入的 Markdown，不依赖该外部目录。
+
 - `src/data/profile.ts`：公开身份信息、联系方式、关注方向和技术实践。
 - `src/content/projects/*.md`：项目元信息与正文；schema 位于 `src/content.config.ts`。
 - `src/styles/global.css`：设计变量、共用组件与移动端断点。

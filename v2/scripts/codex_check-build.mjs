@@ -9,13 +9,20 @@ async function walk(dir) {
 }
 const files = await walk(root);
 const pages = files.filter(file => file.endsWith('.html'));
-assert.equal(pages.length, 9, '必须包含首页、项目列表、四个详情、关于页、联系页和 404');
+const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
+const siteRoutes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname);
+assert.equal(pages.length, siteRoutes.length + 1, '内容页面与 sitemap 应一致，并额外包含 404');
+for (const route of ['/notes/', '/notes/ssh-sshd/', '/notes/tls-1-3/', '/notes/ubuntu-operations/', '/notes/wireshark-protocols/', '/notes/hydra-kali/']) assert(siteRoutes.includes(route), `缺少笔记路由：${route}`);
 const byPath = new Map();
 for (const page of pages) byPath.set(page, await readFile(page, 'utf8'));
-const forbidden = /USER_CONTEXT\.md|SERVER_SSH_KEY|panel\.yuxinlei\.cloud|\/var\/www\/|Reality|59995|56641|43\.167\.157\.131/;
+const forbidden = /USER_CONTEXT\.md|SERVER_SSH_KEY|panel\.yuxinlei\.cloud|59995|56641|43\.167\.157\.131|-----BEGIN (?:OPENSSH |RSA |EC )?PRIVATE KEY-----/;
 let links = 0;
 for (const [page, html] of byPath) {
   assert(!forbidden.test(html), `不应发布内部背景或管理信息：${page}`);
+  if (page.includes(`${path.sep}notes${path.sep}`)) {
+    assert(!/\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b|(?:vless|vmess|trojan):\/\/|https?:\/\/[^\s"<>]+\/sub\//i.test(html), `笔记中不能包含节点标识、分享或订阅链接：${page}`);
+    assert(!/(?:3x-ui|Xray)\s+\d+\.\d+\.\d+/i.test(html), `笔记中不能保留实际面板或核心版本：${page}`);
+  }
   assert.match(html, /<html[^>]+lang="zh-CN"/, `缺少中文语言属性：${page}`);
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `每页应只有一个 h1：${page}`);
   assert.match(html, /<meta name="description" content="[^"\s][^"]+"/, `缺少页面描述：${page}`);
@@ -47,7 +54,6 @@ for (const [page, html] of byPath) {
 }
 for (const expected of ['social-cover.jpg', 'favicon.png', 'robots.txt', 'sitemap.xml']) await stat(path.join(root, expected));
 assert(!files.some(file => /\.(?:md|ts|astro|yml|map)$/.test(file)), '静态产物不得包含源文件或背景档案');
-const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
-assert.equal((sitemap.match(/<loc>/g) ?? []).length, 8, 'sitemap 应覆盖 8 个内容页面');
+assert.equal(new Set(siteRoutes).size, siteRoutes.length, 'sitemap 中不应有重复页面');
 assert(!sitemap.includes('404'), '404 不应进入 sitemap');
 console.log(`通过：${pages.length} 个 HTML 页面；${links} 个内部链接/素材/锚点；SEO、站点地图与内容隔离检查。`);

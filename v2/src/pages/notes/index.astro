@@ -1,0 +1,15 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+const all = await getCollection('notes');
+const intro = all.find(note => note.data.kind === 'intro')!;
+const { Content } = await render(intro);
+const notes = all.filter(note => note.data.kind === 'note').sort((a,b) => a.data.order - b.data.order);
+---
+<BaseLayout title="笔记 · 于鑫磊" description="个人知识库：SSH、TLS、Ubuntu、Wireshark 与安全工具学习笔记。">
+  <section class="shell page-intro notes-intro"><h1>{intro.data.title}<span class="accent">。</span></h1><div class="prose notes-intro-copy"><Content /></div></section>
+  <section class="shell notes-grid" aria-label="主题笔记">
+    {notes.map(note => <article class="note-card"><Icon name={note.data.icon} size={34} /><h2><a href={`/notes/${note.id}/`}>{note.data.title}</a></h2><p>{note.data.description}</p><ul class="tag-list" aria-label="主题">{note.data.tags.map(tag => <li>{tag}</li>)}</ul></article>)}
+  </section>
+</BaseLayout>
