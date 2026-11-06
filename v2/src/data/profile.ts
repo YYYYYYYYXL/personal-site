@@ -13,7 +13,7 @@ export const profile = {
 };
 
 export const focusAreas = [
-  { number: '01', icon: 'aperture', title: '图像与模型', description: '围绕图像去噪，继续推进模型训练、实验评价与系统实现。', tags: ['Python', 'PyTorch', '图像去噪'] },
+  { number: '01', icon: 'aperture', title: '图像与模型', description: '在图像去噪项目中实践模型训练与实验评价，并将去噪系统部署上线。', tags: ['Python', 'PyTorch', '图像去噪'] },
   { number: '02', icon: 'database', title: '数据与应用', description: '从原始数据处理到接口与可视化，让数据成为可理解的内容。', tags: ['pandas', 'Django', 'SQL'] },
   { number: '03', icon: 'terminal-window', title: '工程与交付', description: '在真实部署中学习版本管理、自动化交付与问题定位。', tags: ['Git', 'Docker', 'Linux'] },
 ] as const;

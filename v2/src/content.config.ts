@@ -10,7 +10,7 @@ const projects = defineCollection({
     summary: z.string(),
     category: z.enum(['research', 'opensource', 'personal', 'data']),
     categoryLabel: z.string(),
-    status: z.enum(['in-progress', 'practice', 'local-preview']),
+    status: z.enum(['in-progress', 'completed', 'practice', 'local-preview']),
     statusLabel: z.string(),
     role: z.string(),
     period: z.string(),
